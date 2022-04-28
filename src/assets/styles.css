@@ -1,0 +1,126 @@
+* {
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --grid-calendar: repeat(7, 1fr);
+    --primary: hsl(349, 73%, 46%);
+    --p-hue: 349;
+    --p-sat: 73%;
+    --p-bri: 46%;
+    --secondary: hsl(45, 100%, 50%);
+    --s-hue: 45;
+    --s-sat: 100%;
+    --s-bri: 50%;
+    --terciary: hsl(275, 31%, 14%);
+    --t-hue: 275;
+    --t-sat: 31%;
+    --t-bri: 14%;
+    --white: hsl(0, 0%, 100%);
+    --w-hue: 0;
+    --w-sat: 0%;
+    --w-bri: 100%;
+}
+
+main {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template: var(--grid, 'title' max-content 'calendar' 1fr 'control' 1fr / 1fr);
+    overflow: hidden;
+}
+
+.calendar {
+    --bg: hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
+    display: grid;
+    grid-area: calendar;
+    grid-template-columns: var(--grid-calendar);
+    grid-template-rows: min-content;
+    grid-gap: 1em;
+    justify-content: center;
+    background: var(--bg);
+    padding: 1rem 2rem;
+}
+
+.day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .5s;
+}
+
+.day p {
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+header {
+    --bg: hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
+    font-size: 2em;
+    background: var(--bg);
+    padding: 1rem 2rem;
+    grid-area: title;
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.day-name {
+    --w-bri: 50%;
+    text-align: center;
+    font-size: 0em;
+    text-transform: uppercase;
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+.day-name::first-letter {
+    font-size: 1rem;
+}
+.day p {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.activity p:after {
+    content: '';
+    position: absolute;
+    width: .5em;
+    height: .5em;
+    bottom: 0;
+    border-radius: 50%;
+    background-color: hsl(var(--p-hue), var(--p-sat), var(--p-bri));
+}
+
+.actual:before {
+    content: '';
+    position: absolute;
+    height: var(--actual, 2em);
+    width: var(--actual, 2em);
+    border-radius: 50%;
+    border: 1px solid hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+
+@media screen and (min-width: 40rem) {
+    :root {
+        --grid: 'control title' max-content 'control calendar' 1fr / 1fr 2fr;
+    }
+    .day-name {
+        font-size: 1.12em;
+    }
+    .day-name::first-letter {
+        font-size: inherit;
+    }
+    .activity p {
+        --b-rad: 50%
+    }
+    .actual:before {
+        --actual: 4em;
+    }
+    header {
+        padding: 1em 2em;
+    }
+}

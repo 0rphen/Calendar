@@ -1,6 +1,7 @@
 <script setup lang="ts">
  import Day from '../../components/Day.vue'
  import useMonth from './composable/month'
+ import SchedulerControl from '../../components/SchedulerControl.vue'
  
  const {days, dayName, monthName} = useMonth()
 </script>
@@ -16,5 +17,6 @@
       >{{day}}</div>
       <Day :item="day" v-for="(day,index) of days" :key="index"></Day>
     </section>
+    <SchedulerControl />
   </main>
 </template>

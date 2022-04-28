@@ -1,0 +1,130 @@
+/* SCHEDULER */
+.scheduler--control {
+    grid-area: control;
+    padding: 2em;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+}
+
+.scheduler--item {
+    --scheduler-item-color: hsl(var(--hue), var(--sat), var(--bri));
+    padding-left: 3em;
+    position: relative;
+    display: grid;
+    grid-template: var(--grid-item, 'hour' 1fr 'description' 1fr / 1fr);
+}
+.scheduler--item:nth-child(3n + 1) {
+    --hue: var(--p-hue);
+    --sat: var(--p-sat);
+    --bri: var(--p-bri);
+}
+.scheduler--item:nth-child(3n + 2) {
+    --hue: var(--s-hue);
+    --sat: var(--s-sat);
+    --bri: var(--s-bri);
+}
+.scheduler--item:nth-child(3n + 3) {
+    --hue: var(--t-hue);
+    --sat: var(--t-sat);
+    --bri: var(--t-bri);
+}
+
+.scheduler--item:before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    left: 0;
+    top: .5em; /*calc(50% - .5em);*/
+    position: absolute;
+    background-color: var(--scheduler-item-color);
+    border-radius: 50%;
+}
+.scheduler--item:not(:first-child):after {
+    --w-bri: 80%;
+    content: '';
+    height: 2.7em;
+    left: .35em;
+    top: calc(-50% - .8em);
+    position: absolute;
+    border-left: 3px solid hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+
+.scheduler--item h2 {
+    grid-area: hour;
+    color: var(--scheduler-item-color);
+}
+
+.scheduler--item span {
+    --w-bri: 40%;
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+    grid-area: description;
+}
+
+/* DAY */
+.day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .5s;
+}
+
+.day p {
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+
+.day-name {
+    --w-bri: 50%;
+    text-align: center;
+    font-size: 0em;
+    text-transform: uppercase;
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+.day-name::first-letter {
+    font-size: 1rem;
+}
+.day p {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* ACTIVITY INDICATOR */
+
+.activity p:after {
+    content: '';
+    position: absolute;
+    width: .5em;
+    height: .5em;
+    bottom: 0;
+    border-radius: 50%;
+    background-color: hsl(var(--p-hue), var(--p-sat), var(--p-bri));
+}
+
+.actual:before {
+    content: '';
+    position: absolute;
+    height: var(--actual, 2em);
+    width: var(--actual, 2em);
+    border-radius: 50%;
+    border: 1px solid hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+
+@media screen and (min-width: 40rem) {
+    .day-name {
+        font-size: 1.12em;
+    }
+    .day-name::first-letter {
+        font-size: inherit;
+    }
+    .activity p {
+        --b-rad: 50%
+    }
+    .actual:before {
+        --actual: 4em;
+    }
+}

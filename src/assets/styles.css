@@ -36,6 +36,7 @@ main {
 }
 
 header {
+    --t-bri: 25%;
     --bg: hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
     font-size: 2em;
     background: var(--bg);
@@ -54,7 +55,7 @@ header {
     grid-template-rows: min-content;
     grid-gap: 1em;
     justify-content: center;
-    background: var(--bg);
+    background: linear-gradient(0deg, var(--bg) 20%, hsl(var(--t-hue), var(--t-sat), 25%) 100%);
     padding: 1rem 2rem;
 }
 

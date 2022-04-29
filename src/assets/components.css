@@ -1,3 +1,4 @@
+@import './animations.css';
 /* SCHEDULER */
 .scheduler--control {
     grid-area: control;
@@ -13,6 +14,9 @@
     position: relative;
     display: grid;
     grid-template: var(--grid-item, 'hour' 1fr 'description' 1fr / 1fr);
+    opacity: 0;
+    animation: add-item .5s ease-in forwards;
+    animation-delay: calc(.3s * var(--scheduler-item) );
 }
 .scheduler--item:nth-child(3n + 1) {
     --hue: var(--p-hue);
@@ -74,14 +78,14 @@
     color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
 
-.day-name {
+.day--name {
     --w-bri: 50%;
     text-align: center;
     font-size: 0em;
     text-transform: uppercase;
     color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
-.day-name::first-letter {
+.day--name::first-letter {
     font-size: 1rem;
 }
 .day p {
@@ -93,6 +97,9 @@
     position: relative;
 }
 
+.day--empty {
+    grid-column: span var(--empty, 0);
+}
 /* ACTIVITY INDICATOR */
 
 .activity p:after {
@@ -114,6 +121,24 @@
     border: 1px solid hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
 
+/* BUTTON */
+.add-schedule {
+    --size: 2em;
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    text-decoration: none;
+    border-style: none;
+    font-size: var(--size);
+    right: 1em;
+    bottom: 1em;
+    border-radius: 50%;
+    background-color: hsl(var(--s-hue), var(--s-sat), var(--s-bri));
+    cursor: pointer;
+}
+.add-schedule:hover { --s-bri: 40%; }
+.add-schedule:active { --s-bri: 30%; }
+
 @media screen and (min-width: 40rem) {
     .day-name {
         font-size: 1.12em;
@@ -127,4 +152,5 @@
     .actual:before {
         --actual: 4em;
     }
+    .add-schedule { right: unset; left: 25vw; }
 }

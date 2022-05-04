@@ -31,7 +31,7 @@ main {
     width: 100%;
     height: 100vh;
     display: grid;
-    grid-template: var(--grid, 'title' max-content 'calendar' 1fr 'control' 1fr / 1fr);
+    grid-template: var(--grid, 'title' max-content 'calendar' 1fr 'items' 1fr 'control' max-content / 1fr);
     overflow: hidden;
 }
 
@@ -59,9 +59,23 @@ header {
     padding: 1rem 2rem;
 }
 
+input[type=text],
+input[type=time],
+textarea {
+    --w-bri: 90%;
+    padding: .5em;
+    background-color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+    border: unset;
+}
+
+:is(input[type=text], input[type=time], textarea):focus {
+    outline: thin solid hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
+    box-shadow: 1px 1px 3px 3px hsla(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%), .2);
+}
+
 @media screen and (min-width: 40rem) {
     :root {
-        --grid: 'control title' max-content 'control calendar' 1fr / 1fr 2fr;
+        --grid: 'items title' max-content 'items calendar' 1fr 'control calendar' max-content / 1fr 2fr;
     }
     header {
         padding: 1em 2em;

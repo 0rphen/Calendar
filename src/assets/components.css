@@ -1,14 +1,15 @@
 @import './animations.css';
 /* SCHEDULER */
-.scheduler--control {
-    grid-area: control;
+.scheduler__list {
+    grid-area: items / items / control / items; 
     padding: 2em;
     display: flex;
     gap: 1em;
     flex-direction: column;
+    overflow-y: auto;
 }
 
-.scheduler--item {
+.scheduler__item {
     --scheduler-item-color: hsl(var(--hue), var(--sat), var(--bri));
     padding-left: 3em;
     position: relative;
@@ -18,23 +19,23 @@
     animation: add-item .5s ease-in forwards;
     animation-delay: calc(.3s * var(--scheduler-item) );
 }
-.scheduler--item:nth-child(3n + 1) {
+.scheduler__item:nth-child(3n + 1) {
     --hue: var(--p-hue);
     --sat: var(--p-sat);
     --bri: var(--p-bri);
 }
-.scheduler--item:nth-child(3n + 2) {
+.scheduler__item:nth-child(3n + 2) {
     --hue: var(--s-hue);
     --sat: var(--s-sat);
     --bri: var(--s-bri);
 }
-.scheduler--item:nth-child(3n + 3) {
+.scheduler__item:nth-child(3n + 3) {
     --hue: var(--t-hue);
     --sat: var(--t-sat);
     --bri: var(--t-bri);
 }
 
-.scheduler--item:before {
+.scheduler__item:before {
     content: '';
     width: 1em;
     height: 1em;
@@ -44,7 +45,7 @@
     background-color: var(--scheduler-item-color);
     border-radius: 50%;
 }
-.scheduler--item:not(:first-child):after {
+.scheduler__item:not(:first-child):after {
     --w-bri: 80%;
     content: '';
     height: 2.7em;
@@ -54,17 +55,67 @@
     border-left: 3px solid hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
 
-.scheduler--item h2 {
+.scheduler__item h2 {
     grid-area: hour;
     color: var(--scheduler-item-color);
 }
 
-.scheduler--item span {
+.scheduler__item span {
     --w-bri: 40%;
     color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
     grid-area: description;
 }
+/* SCHEDULE FORM */
+.scheduler__modal {
+    grid-area: title / title / items / items;
+    background-color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+    transform: translateY(-105%);
+    transition: .5s;
+    box-shadow: 0 0 15px 5px rgba(0,0,0,.25);
+    z-index: 1;
+}
+.modal__form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+    grid-gap: 1em;
+    padding: 1em;
+}
 
+.modal__form :is(textarea, input, label) {
+    text-transform: capitalize;
+}
+
+.modal__form textarea { resize: none; }
+
+.schedule__form--group {
+    display: flex;
+    gap: 1em;
+}
+
+.form__input--full {
+    grid-column: span 2;
+}
+
+.add-btn {
+    border: none;
+    padding: 1em 2em;
+    background-color: hsl(var(--p-hue), var(--p-sat), var(--p-bri));
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.add-btn:hover { --p-bri: 30%; }
+.add-btn:active { --p-bri: 80%; }
+
+
+/* ADDING SCHEDULE */
+.add {
+    transform: translateY(0);
+}
+button.add {
+    transform: rotate(45deg);
+}
 /* DAY */
 .day {
     display: flex;
@@ -78,14 +129,14 @@
     color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
 
-.day--name {
+.day__name {
     --w-bri: 50%;
     text-align: center;
     font-size: 0em;
     text-transform: uppercase;
     color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
-.day--name::first-letter {
+.day__name::first-letter {
     font-size: 1rem;
 }
 .day p {
@@ -97,7 +148,7 @@
     position: relative;
 }
 
-.day--empty {
+.day__empty {
     grid-column: span var(--empty, 0);
 }
 /* ACTIVITY INDICATOR */
@@ -122,22 +173,52 @@
 }
 
 /* BUTTON */
+.scheduler__control {
+    grid-area: control;
+    padding: 1em;
+    display: flex;
+    justify-content: flex-end;
+}
 .add-schedule {
     --size: 2em;
-    position: absolute;
     width: var(--size);
     height: var(--size);
     text-decoration: none;
     border-style: none;
     font-size: var(--size);
-    right: 1em;
-    bottom: 1em;
     border-radius: 50%;
     background-color: hsl(var(--s-hue), var(--s-sat), var(--s-bri));
     cursor: pointer;
+    transition: .5s;
 }
 .add-schedule:hover { --s-bri: 40%; }
 .add-schedule:active { --s-bri: 30%; }
+
+/* SELECTOR TIME */
+.selector__time {
+    height: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.selector__time--actual {
+    top: 1.3em;
+    height: 1.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    position: absolute;
+    overflow: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.selector__time--actual li {
+    height: 1.3em;
+}
 
 @media screen and (min-width: 40rem) {
     .day-name {

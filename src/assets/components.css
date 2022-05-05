@@ -107,6 +107,10 @@
 
 .add-btn:hover { --p-bri: 30%; }
 .add-btn:active { --p-bri: 80%; }
+.add-btn:disabled {
+    --p-bri: 85%;
+    cursor: not-allowed;
+}
 
 
 /* ADDING SCHEDULE */
@@ -190,6 +194,7 @@ button.add {
     background-color: hsl(var(--s-hue), var(--s-sat), var(--s-bri));
     cursor: pointer;
     transition: .5s;
+    z-index: 1;
 }
 .add-schedule:hover { --s-bri: 40%; }
 .add-schedule:active { --s-bri: 30%; }

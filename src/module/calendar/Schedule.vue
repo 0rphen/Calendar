@@ -1,12 +1,15 @@
 <script setup lang="ts">
+ import { storeToRefs } from 'pinia'
+ 
  import Day from '@/components/Day.vue'
  import useMonth from './composable/month'
  import SchedulerControl from '@/components/SchedulerControl.vue'
  import ScheduleForm from './ScheduleForm.vue'
- import { ref } from 'vue'
+ import useSchedule from './store/schedules'
 
  const {days, dayName, monthName, emptyDays} = useMonth()
- const addSchedule = ref(false)
+ const { toggleModal } = useSchedule()
+ const { showModal } = storeToRefs(useSchedule())
 </script>
 
 <template>
@@ -29,13 +32,13 @@
     <div class="scheduler__control">
       <button
         class="add-schedule"
-        :class="{'add': addSchedule}"
-        @click="addSchedule = !addSchedule"
+        :class="{'add': showModal}"
+        @click="toggleModal()"
       ><i class="fa fa-plus"></i>
       </button>
     </div>
-    <div class="scheduler__modal" :class="{'add': addSchedule}">
-      <ScheduleForm></ScheduleForm>
+    <div class="scheduler__modal" :class="{'add': showModal}">
+      <ScheduleForm />
     </div>
   </main>
 </template>

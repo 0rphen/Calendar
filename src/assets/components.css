@@ -58,6 +58,12 @@
 .scheduler__item h2 {
     grid-area: hour;
     color: var(--scheduler-item-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.scheduler__item h2 sup {
+    font-size: .75em;
 }
 
 .scheduler__item span {
@@ -67,7 +73,7 @@
 }
 /* SCHEDULE FORM */
 .scheduler__modal {
-    grid-area: title / title / items / items;
+    grid-area: var(--grid-modal, title / title / items / items);
     background-color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
     transform: translateY(-105%);
     transition: .5s;
@@ -122,14 +128,18 @@ button.add {
 }
 /* DAY */
 .day {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     transition: background .5s;
 }
 
 .day p {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: color .5s;
     color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
 
@@ -143,13 +153,9 @@ button.add {
 .day__name::first-letter {
     font-size: 1rem;
 }
-.day p {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+
+.day p.active {
+    color: hsl(var(--p-hue), var(--p-sat), var(--p-bri));
 }
 
 .day__empty {
@@ -165,13 +171,14 @@ button.add {
     bottom: 0;
     border-radius: 50%;
     background-color: hsl(var(--p-hue), var(--p-sat), var(--p-bri));
+    left: calc(50% - .25em);
 }
 
 .actual:before {
     content: '';
     position: absolute;
-    height: var(--actual, 2em);
-    width: var(--actual, 2em);
+    height: var(--actual, 2.5em);
+    width: var(--actual, 2.5em);
     border-radius: 50%;
     border: 1px solid hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
@@ -226,10 +233,10 @@ button.add {
 }
 
 @media screen and (min-width: 40rem) {
-    .day-name {
+    .day__name {
         font-size: 1.12em;
     }
-    .day-name::first-letter {
+    .day__name::first-letter {
         font-size: inherit;
     }
     .activity p {
@@ -239,4 +246,5 @@ button.add {
         --actual: 4em;
     }
     .add-schedule { right: unset; left: 25vw; }
+    .scheduler__modal { --grid-modal: items}
 }

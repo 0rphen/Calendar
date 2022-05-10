@@ -1,8 +1,8 @@
 <script setup lang="ts">
  import { reactive } from 'vue'
  import { storeToRefs } from 'pinia'
- import useSchedule from '../module/calendar/store/schedules'
- import useMonthStore from '../module/calendar/store/month'
+ import useSchedule from '../module/calendar/store/schedules.store'
+ import useMonthStore from '../module/calendar/store/month.store'
  import getDay from '../utils/getDay'
  import IDay from '../interfaces/day.interface'
 

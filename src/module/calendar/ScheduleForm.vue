@@ -1,20 +1,28 @@
-<script setup lang="ts">
- import useForm from './validators/ScheduleForm'
- import useSchedule from './store/schedules'
- import { storeToRefs } from 'pinia'
+\<script setup lang="ts">
+  import useForm from './validators/ScheduleForm'
+  import useSchedule from './store/schedules.store'
+  import Notification from '../../components/Notification.vue'
+  
+  import { storeToRefs } from 'pinia'
+  import useCheckDisposition from './composable/checkScheduleDisposition'
 
- const { v$ } = useForm()
- const { addSchedule, toggleModal } = useSchedule()
- const { schedule } = storeToRefs(useSchedule())
+  const { v$ } = useForm()
+  const { addSchedule, toggleModal } = useSchedule()
+  const { schedule } = storeToRefs(useSchedule())
+  const { hasTime } = useCheckDisposition()
+  const errorMessage = "Warning, you've another schedule on this time"
 
- function addingSchedule() {
-   addSchedule()
-   toggleModal()
- }
+  function addingSchedule() {
+    if(hasTime(schedule.value.from, schedule.value.to)) {
+      addSchedule()
+      toggleModal()
+    }
+  }
 </script>
 
 <template>
   <div class="modal__form">
+    <Notification class="form__input--full" :text="errorMessage" v-if="v$.to.hasTime.$invalid" :icon="true" />
     <label for="">title</label>
     <input
       v-model="schedule.title"

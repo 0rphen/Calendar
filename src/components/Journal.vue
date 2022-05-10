@@ -1,6 +1,6 @@
 <script lang="ts" setup>
  import { storeToRefs } from 'pinia'
- import useSchedule from '../module/calendar/store/schedules'
+ import useSchedule from '../module/calendar/store/schedules.store'
  
  const { getScheduler } = storeToRefs(useSchedule())
 </script>

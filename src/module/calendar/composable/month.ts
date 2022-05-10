@@ -1,8 +1,7 @@
-import useMonthStore from '../store/month'
-import useSchedule from '../store/schedules'
+import useMonthStore from '../store/month.store'
+import useSchedule from '../store/schedules.store'
 import getDay from "../../../utils/getDay"
 import IDay from '../../../interfaces/day.interface'
-import MONTHS from '../../../constants/months'
 
 const useMoth = () => {
   const { setDays } = useMonthStore()
@@ -23,13 +22,9 @@ const useMoth = () => {
       })
     setDays(days)
   }
-  const dayName = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
-  const monthName = MONTHS.at(month);
   return {
     emptyDays,
-    dayName,
-    initDays,
-    monthName
+    initDays
   }
 }
 

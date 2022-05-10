@@ -1,13 +1,13 @@
 import { reactive } from "vue"
 import { defineStore } from 'pinia'
 import ISchedule from "../../../interfaces/schedule.interface"
-import SCHEDULE from "../../../constants/schedule"
-import SCHEDULES from "../../../constants/schedules"
+import SCHEDULE from "../../../constants/schedule.constant"
+import SCHEDULES from "../../../constants/schedules.constant"
 import getDay from "../../../utils/getDay"
-import useMonthStore from "./month"
+import useMonthStore from "./month.store"
+import useCheckScheduler from '../composable/checkScheduleDisposition'
 
 const day = getDay()
-const DATE = '01/01/1999 '
 
 const useSchedule = defineStore('schedules', {
   state: () => ({
@@ -34,11 +34,12 @@ const useSchedule = defineStore('schedules', {
   },
   getters: {
     getScheduler(): ISchedule[] {
+      const { returnDate } = useCheckScheduler()
       return this.schedules
         .filter((sched: ISchedule) => sched.day == this.day)
         .sort((current: ISchedule, prev: ISchedule) => {
-          if (Date.parse(DATE + current.from) > Date.parse(DATE + prev.from)) return 1
-          if (Date.parse(DATE + current.from) < Date.parse(DATE + prev.from)) return -1
+          if (returnDate(current.from) > returnDate(prev.from)) return 1
+          if (returnDate(current.from) < returnDate(prev.from)) return -1
           return 0
         })
     }

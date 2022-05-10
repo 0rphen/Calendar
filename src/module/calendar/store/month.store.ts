@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 import IDay from '../../../interfaces/day.interface'
+import MONTHS from '../../../constants/months.constant'
 
 const useMonthStore = defineStore('month', {
   state: () => ({
     date: new Date(),
-    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    dayName: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+    months: [...MONTHS],
     days: [] as IDay[]
   }),
   actions: {

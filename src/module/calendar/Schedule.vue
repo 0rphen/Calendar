@@ -2,19 +2,20 @@
  import { storeToRefs } from 'pinia'
 
  import Day from '@/components/Day.vue'
- import useMonth from './composable/month'
- import useMonthState from './store/month'
  import Journal from '@/components/Journal.vue'
+ import useMonth from './composable/month'
+ import useMonthState from './store/month.store'
  import ScheduleForm from './ScheduleForm.vue'
- import useSchedule from './store/schedules'
+ import useSchedule from './store/schedules.store'
+ import DAY_NAME from '../../constants/days.constant'
 
- const { dayName, monthName, emptyDays, days } = storeToRefs(useMonthState())
+ const { monthName, emptyDays, days } = storeToRefs(useMonthState())
  const { initDays } = useMonth()
- initDays()
- const { toggleModal } = useSchedule()
+ const { toggleModal, setDay } = useSchedule()
  const { showModal } = storeToRefs(useSchedule())
 
- const { setDay } = useSchedule()
+ initDays()
+
  function checkDay(e: any) {
    const { id } = e.dataset
    if (id) setDay(id)
@@ -27,7 +28,7 @@
     <section class="calendar" @click="checkDay($event.target)">
       <div
         class="day__name"
-        v-for="(day, index) of dayName"
+        v-for="(day, index) of DAY_NAME"
         :key ="index"
       >{{ day }}</div>
       <div

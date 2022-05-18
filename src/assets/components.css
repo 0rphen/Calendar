@@ -79,6 +79,7 @@
     transform: translateY(-105%);
     transition: .5s;
     z-index: 1;
+    overflow-y: auto;
 }
 .modal__form {
     display: grid;
@@ -267,7 +268,7 @@ button.add {
     color: var(--notif-color, hsl(var(--p-hue), var(--p-sat), var(--p-bri)));
 }
 
-@media screen and (min-width: 40rem) {
+@media screen and (min-width: 55rem) {
     .day__name {
         font-size: 1.12em;
     }
@@ -281,6 +282,6 @@ button.add {
         --actual: 4em;
     }
     .add-schedule { right: unset; left: 25vw; }
-    .scheduler__modal { --grid-modal: items}
+    .scheduler__modal { --grid-modal: items; }
     .notification { font-size: .5em; }
 }

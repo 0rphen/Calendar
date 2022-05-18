@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import IDay from '../../../interfaces/day.interface'
 import MONTHS from '../../../constants/months.constant'
+import useSchedule from '../store/schedules.store'
+import getDay from "../../../utils/getDay"
 
 const useMonthStore = defineStore('month', {
   state: () => ({
@@ -37,6 +39,18 @@ const useMonthStore = defineStore('month', {
     },
     monthName(): any {
       return this.months.at(this.month)
+    },
+    getDays(): any {
+      const { hasSchedules } = useSchedule()
+      return Array.from(Array(this.lastDay.getDate()).keys())
+        .map(day => {
+          day += 1
+          return {
+            id: getDay(day, this.date),
+            day: (day).toString(),
+            schedules: hasSchedules(getDay(day, this.date))
+          } as IDay
+        })
     }
   }
 })

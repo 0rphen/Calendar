@@ -6,7 +6,7 @@
    text: string,
    close?: boolean
  }
-
+ 
  const props = defineProps<INotification>()
 </script>
 

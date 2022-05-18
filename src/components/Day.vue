@@ -7,7 +7,8 @@
  import IDay from '../interfaces/day.interface'
 
  interface IProps {
-   item: IDay
+   item: IDay,
+   iKey: string
  }
  
  const props = defineProps<IProps>()

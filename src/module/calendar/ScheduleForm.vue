@@ -1,4 +1,4 @@
-\<script setup lang="ts">
+<script setup lang="ts">
   import useForm from './validators/ScheduleForm'
   import useSchedule from './store/schedules.store'
   import Notification from '../../components/Notification.vue'
@@ -30,37 +30,29 @@
     <input
       v-model="schedule.title"
       class="form__input--full"
-      name=""
-      type="text"
+      name="" type="text"
     />
     <label for="">description</label>
     <textarea
       v-model="schedule.description"
       class="form__input--full"
-      cols="30"
-      id=""
-      name=""
-      rows="10"
+      cols="30" id="" name="" rows="10"
     ></textarea>
     <label for="">From</label>
     <label for="">To</label>
     <input
       v-model="schedule.from"
-      name=""
-      type="time"
+      name="" type="time"
     />
     <input
       v-model="schedule.to"
-      name=""
-      type="time"
+      name="" type="time"
     />
     <input
       :disabled="v$.$invalid"
       @click="addingSchedule()"
       class="add-btn form__input--full"
-      name=""
-      type="button"
-      value="add"
+      name="" type="button" value="add"
     />
   </div>
 </template>

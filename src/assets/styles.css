@@ -45,6 +45,18 @@ header {
     grid-area: title;
     padding: 1rem 2rem;
     text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+}
+
+header span {
+    padding: 0 .5em;
+    cursor: pointer;
+    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+}
+
+span:hover {
+    --w-bri: 40%;
 }
 
 .calendar {
@@ -79,14 +91,16 @@ header {
 
 textarea { resize: none; }
 
-@media screen and (min-width: 40rem) {
+@media screen and (min-width: 55rem) {
     :root {
         --grid: 'items title' max-content 'items calendar' 1fr 'control calendar' max-content / 1fr 2fr;
     }
     header {
         padding: 1em 2em;
+        justify-content: flex-start;
+        gap: 2em;
     }
     .calendar {
-        padding: 0 15vw 20vh 0;
+        padding: 0 15vw 20vh 2em;
     }
 }

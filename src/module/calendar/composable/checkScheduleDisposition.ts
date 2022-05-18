@@ -10,14 +10,14 @@ const useCheckDisposition = () => {
     const new_from = returnDate(from)
     const new_to = returnDate(to)
     let hasDisponibility = true;
+    if ((from == '' || to == '')) return hasDisponibility
     schedules.forEach((s: ISchedule) => {
       const sFrom = returnDate(s.from)
       const sTo = returnDate(s.to)
       if ((sFrom > new_from && sTo < new_from)
         || (sTo > new_from && sFrom < new_to)
-        || (sFrom < new_from && sTo > new_to)) {
+        || (sFrom < new_from && sTo > new_to))
         hasDisponibility = false
-      }
     })
     return hasDisponibility
   }

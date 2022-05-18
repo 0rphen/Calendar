@@ -22,7 +22,10 @@
 
 <template>
   <div class="modal__form">
-    <Notification class="form__input--full" :text="errorMessage" v-if="v$.to.hasTime.$invalid" :icon="true" />
+    <h1 class="form__input--full">
+      <Notification :text="errorMessage" :hasVisible="v$.to.hasTime.$invalid" :icon="true" />
+      New Schedule
+    </h1>
     <label for="">title</label>
     <input
       v-model="schedule.title"

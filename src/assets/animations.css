@@ -8,3 +8,19 @@
         transform: translateX(0);
     }
 }
+@keyframes show-notification {
+    0% {
+        opacity: 0;
+        display: none;
+        height: 0;
+    }
+    25% {
+        display: block;
+        height: 100%;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

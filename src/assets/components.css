@@ -74,7 +74,7 @@
 /* SCHEDULE FORM */
 .scheduler__modal {
     background-color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
-    box-shadow: 0 0 15px 5px rgba(0,0,0,.25);
+    box-shadow: 0 0 15px 5px hsla(var(--w-hue),var(--w-sat),0%,.25);
     grid-area: var(--grid-modal, title / title / items / items);
     transform: translateY(-105%);
     transition: .5s;
@@ -87,11 +87,7 @@
     padding: 1em;
 }
 
-.modal__form :is(textarea, input, label) {
-    text-transform: capitalize;
-}
-
-.modal__form textarea { resize: none; }
+.modal__form h1 { position: relative; }
 
 .schedule__form--group {
     display: flex;
@@ -235,15 +231,22 @@ button.add {
 /* NOTIFICATIONS */
 .notification {
     --p-bri: 60%;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    gap: 1em;
-    justify-content: flex-start;
     align-items: center;
     background-color: var(--notif-color, hsl(var(--p-hue), var(--p-sat), var(--p-bri)));
-    padding: .5em;
+    display: flex;
+    font-size: .4em;
+    gap: 1em;
+    height: 100%;
+    justify-content: flex-start;
+    opacity: 0;
+    padding: .5em 1em;
+    position: absolute;
     transition: .5s;
+    width: 100%;
+}
+
+.notification.visible {
+    animation: show-notification .5s linear forwards;
 }
 
 .notification__icon {
@@ -279,4 +282,5 @@ button.add {
     }
     .add-schedule { right: unset; left: 25vw; }
     .scheduler__modal { --grid-modal: items}
+    .notification { font-size: .5em; }
 }

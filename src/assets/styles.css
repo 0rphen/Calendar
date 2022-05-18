@@ -59,19 +59,25 @@ header {
     padding: 1rem 2rem;
 }
 
-input[type=text],
-input[type=time],
-textarea {
+/* FORMS*/
+
+:is(input:is([type=text], [type=time]), textarea) {
     --w-bri: 90%;
     background-color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
     border: unset;
     padding: .5em;
 }
 
-:is(input[type=text], input[type=time], textarea):focus {
+:is(input:is([type=text], [type=time]), textarea):focus {
     box-shadow: 1px 1px 3px 3px hsla(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%), .2);
     outline: thin solid hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
 }
+
+:is(input:is([type=time], [type=button]), label) {
+    text-transform: capitalize;
+}
+
+textarea { resize: none; }
 
 @media screen and (min-width: 40rem) {
     :root {
@@ -79,5 +85,8 @@ textarea {
     }
     header {
         padding: 1em 2em;
+    }
+    .calendar {
+        padding: 0 15vw 20vh 0;
     }
 }

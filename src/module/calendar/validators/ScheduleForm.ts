@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 import { storeToRefs } from 'pinia'
 import useVuelidate from '@vuelidate/core'
-import { required, minLength, helpers } from '@vuelidate/validators'
+import { required, minLength } from '@vuelidate/validators'
 
 import useSchedule from '../store/schedules.store'
 import useCheckDisposition from '../composable/checkScheduleDisposition'

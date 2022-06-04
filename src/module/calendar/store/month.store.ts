@@ -7,8 +7,7 @@ import getDay from "../../../utils/getDay"
 const useMonthStore = defineStore('month', {
   state: () => ({
     date: new Date(),
-    months: [...MONTHS],
-    days: [] as IDay[]
+    months: [...MONTHS]
   }),
   actions: {
     nextDate() {
@@ -18,13 +17,10 @@ const useMonthStore = defineStore('month', {
       this.date = new Date(this.date.getFullYear(), this.month - 1, this.date.getDate())
     },
     getDayInfo(day: string): IDay {
-      return this.days.find((d: IDay) => d.day == day) || {} as IDay
-    },
-    setDays(days: IDay[]) {
-      this.days = [...days]
+      return this.getDays.find((d: IDay) => d.day == day) || {} as IDay
     },
     checkDay(dayId: string) {
-      this.days.forEach(day => {
+      this.getDays.forEach(day => {
         if (day.id == dayId) day.schedules = true
       })
     }
@@ -40,7 +36,7 @@ const useMonthStore = defineStore('month', {
     monthName(): any {
       return this.months.at(this.month)
     },
-    getDays(): any {
+    getDays(): IDay[] {
       const { hasSchedules } = useSchedule()
       return Array.from(Array(this.lastDay.getDate()).keys())
         .map(day => {

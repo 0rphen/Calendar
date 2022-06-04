@@ -233,7 +233,7 @@ button.add {
 .notification {
     --p-bri: 60%;
     align-items: center;
-    background-color: var(--notif-color, hsl(var(--p-hue), var(--p-sat), var(--p-bri)));
+    background-color: var(--notif-color, hsl(var(--hue, var(--p-hue)), var(--p-sat), var(--p-bri)));
     display: flex;
     font-size: .4em;
     gap: 1em;
@@ -245,6 +245,10 @@ button.add {
     transition: .5s;
     width: 100%;
 }
+
+.info {--hue: var(--w-hue); --p-bri: 30%;}
+.warning {--hue: var(--s-hue)}
+.error {--hue: var(--p-hue)}
 
 .notification.visible {
     animation: show-notification .5s linear forwards;

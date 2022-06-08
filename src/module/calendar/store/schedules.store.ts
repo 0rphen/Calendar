@@ -1,6 +1,7 @@
 import { reactive } from "vue"
 import { defineStore } from 'pinia'
 import ISchedule from "../../../interfaces/schedule.interface"
+import State from '../../../types/State.type'
 import SCHEDULE from "../../../constants/schedule.constant"
 import SCHEDULES from "../../../constants/schedules.constant"
 import getDay from "../../../utils/getDay"
@@ -10,7 +11,7 @@ import useCheckScheduler from '../composable/checkScheduleDisposition'
 const day = getDay()
 
 const useSchedule = defineStore('schedules', {
-  state: () => ({
+  state: () => (<State>{
     day,
     schedule: { ...SCHEDULE },
     showModal: false,

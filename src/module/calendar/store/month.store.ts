@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 import IDay from '../../../interfaces/day.interface'
+import Month from '../../../types/Month.type'
 import MONTHS from '../../../constants/months.constant'
 import useSchedule from '../store/schedules.store'
 import getDay from "../../../utils/getDay"
 
 const useMonthStore = defineStore('month', {
-  state: () => ({
+  state: () => (<Month>{
     date: new Date(),
     months: [...MONTHS]
   }),
@@ -26,7 +27,7 @@ const useMonthStore = defineStore('month', {
     }
   },
   getters: {
-    month: (state) => state.date.getMonth(),
+    month: (state: Month) => state.date.getMonth(),
     emptyDays(): any {
       return new Date(this.date.getFullYear(), this.month).getDay()
     },

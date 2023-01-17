@@ -1,10 +1,10 @@
-import ISchedule from "../interfaces/schedule.interface"
+import Schedule from "../interfaces/schedule.interface"
 
 type State = {
   day: string,
-  schedule: ISchedule,
+  schedule: Schedule,
   showModal: boolean,
-  schedules: ISchedule[]
+  schedules: Schedule[]
 }
 
 export default State

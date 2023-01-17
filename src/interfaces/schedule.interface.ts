@@ -1,4 +1,4 @@
-export default interface ISchedule {
+export default interface Schedule {
   description: string;
   from: string;
   id?: number;

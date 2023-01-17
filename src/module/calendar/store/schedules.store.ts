@@ -1,6 +1,6 @@
 import { reactive } from "vue"
 import { defineStore } from 'pinia'
-import ISchedule from "../../../interfaces/schedule.interface"
+import Schedule from "../../../interfaces/schedule.interface"
 import State from '../../../types/State.type'
 import SCHEDULE from "../../../constants/schedule.constant"
 import SCHEDULES from "../../../constants/schedules.constant"
@@ -25,7 +25,7 @@ const useSchedule = defineStore('schedules', {
       checkDay(this.schedule.day)
     },
     removeSchedule(id: number) {
-      this.schedules = reactive([...this.schedules.filter((schedule: ISchedule) => schedule.id != id)])
+      this.schedules = reactive([...this.schedules.filter((schedule: Schedule) => schedule.id != id)])
     },
     toggleModal() { this.showModal = !this.showModal },
     setDay(day: string) {
@@ -33,15 +33,15 @@ const useSchedule = defineStore('schedules', {
       this.schedule.day = day
     },
     hasSchedules(dayId: string): boolean {
-      return this.schedules.find((schedule: ISchedule) => schedule.day == dayId) ? true : false
+      return this.schedules.find((schedule: Schedule) => schedule.day == dayId) ? true : false
     }
   },
   getters: {
-    getScheduler(): ISchedule[] {
+    getScheduler(): Schedule[] {
       const { returnDate } = useCheckScheduler()
       return this.schedules
-        .filter((sched: ISchedule) => sched.day == this.day)
-        .sort((current: ISchedule, prev: ISchedule) => {
+        .filter((sched: Schedule) => sched.day == this.day)
+        .sort((current: Schedule, prev: Schedule) => {
           if (returnDate(current.from) > returnDate(prev.from)) return 1
           if (returnDate(current.from) < returnDate(prev.from)) return -1
           return 0

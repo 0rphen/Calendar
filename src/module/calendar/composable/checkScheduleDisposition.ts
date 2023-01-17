@@ -1,5 +1,5 @@
 import useSchedule from "../store/schedules.store"
-import ISchedule from "../../../interfaces/schedule.interface"
+import Schedule from "../../../interfaces/schedule.interface"
 
 const DATE = '01/01/1999 '
 
@@ -11,7 +11,7 @@ const useCheckDisposition = () => {
     const new_to = returnDate(to)
     let hasDisponibility = true;
     if ((from == '' || to == '')) return hasDisponibility
-    schedules.forEach((s: ISchedule) => {
+    schedules.forEach((s: Schedule) => {
       const sFrom = returnDate(s.from)
       const sTo = returnDate(s.to)
       if ((sFrom > new_from && sTo < new_from)

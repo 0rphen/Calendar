@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import IDay from '../../../interfaces/day.interface'
+import Day from '../../../interfaces/day.interface'
 import Month from '../../../types/Month.type'
 import MONTHS from '../../../constants/months.constant'
 import useSchedule from '../store/schedules.store'
@@ -17,8 +17,8 @@ const useMonthStore = defineStore('month', {
     prevDate() {
       this.date = new Date(this.date.getFullYear(), this.month - 1, this.date.getDate())
     },
-    getDayInfo(day: string): IDay {
-      return this.getDays.find((d: IDay) => d.day == day) || {} as IDay
+    getDayInfo(day: string): Day {
+      return this.getDays.find((d: Day) => d.day == day) || {} as Day
     },
     checkDay(dayId: string) {
       this.getDays.forEach(day => {
@@ -37,7 +37,7 @@ const useMonthStore = defineStore('month', {
     monthName(): any {
       return this.months.at(this.month)
     },
-    getDays(): IDay[] {
+    getDays(): Day[] {
       const { hasSchedules } = useSchedule()
       return Array.from(Array(this.lastDay.getDate()).keys())
         .map(day => {
@@ -46,7 +46,7 @@ const useMonthStore = defineStore('month', {
             id: getDay(day, this.date),
             day: (day).toString(),
             schedules: hasSchedules(getDay(day, this.date))
-          } as IDay
+          } as Day
         })
     }
   }

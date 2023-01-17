@@ -28,7 +28,10 @@ const useSchedule = defineStore('schedules', {
       this.schedules = reactive([...this.schedules.filter((schedule: ISchedule) => schedule.id != id)])
     },
     toggleModal() { this.showModal = !this.showModal },
-    setDay(day: string) { this.day = day },
+    setDay(day: string) {
+      this.day = day
+      this.schedule.day = day
+    },
     hasSchedules(dayId: string): boolean {
       return this.schedules.find((schedule: ISchedule) => schedule.day == dayId) ? true : false
     }

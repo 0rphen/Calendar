@@ -10,7 +10,7 @@
     <div
       v-if="getScheduler.length > 0"
       v-for="(scheduler, index) of getScheduler"
-      :key="index"
+      :key="scheduler.id"
       class="scheduler__item"
       :style="`--scheduler-item: ${index}`"
     >

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
  type Type = 'info' | 'warning' | 'error'
- interface INotification {
+ interface Notification {
    hasVisible: boolean,
    type?: Type,
    icon?: boolean,
@@ -8,7 +8,7 @@
    close?: boolean
  }
  
- const props = defineProps<INotification>()
+ const props = defineProps<Notification>()
 </script>
 
 <template>

@@ -12,10 +12,14 @@ const useMonthStore = defineStore('month', {
   }),
   actions: {
     nextDate() {
-      this.date = new Date(this.date.getFullYear(), this.month + 1, this.date.getDate())
+      const year = this.date.getFullYear()
+      const month = this.month + 1
+      this.date = new Date(year, month, 1)
     },
     prevDate() {
-      this.date = new Date(this.date.getFullYear(), this.month - 1, this.date.getDate())
+      const year = this.date.getFullYear()
+      const month = this.month - 1
+      this.date = new Date(year, month, 1)
     },
     getDayInfo(day: string): Day {
       return this.getDays.find((d: Day) => d.day == day) || {} as Day

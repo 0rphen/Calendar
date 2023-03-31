@@ -12,7 +12,7 @@
 </script>
 
 <template>
-  <div class="notification" :class="{'visible': hasVisible}, `${type}`">
+  <div class="notification" :class="[{ 'visible': hasVisible }, `${type}`]">
     <i class="fa fa-exclamation" v-if="props.icon" ></i>
     <div class="notification__body">{{props.text}}</div>
     <div class="notification__control" v-if="props.close">

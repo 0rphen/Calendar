@@ -1,5 +1,5 @@
 type Month = {
-  date: Date,
+  date: Date
   months: string[]
 }
 

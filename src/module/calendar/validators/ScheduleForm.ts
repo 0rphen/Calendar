@@ -16,9 +16,13 @@ const useForm = () => {
     title: { required, minLength: minLength(3) },
     to: {
       required,
-      minValue(val: any, { from }: any) { return returnDate(val) > returnDate(from) },
-      hasTime(to: any, { from }: any) { return hasTime(from, to) }
-    }
+      minValue(val: string, { from }: never) {
+        return returnDate(val) > returnDate(from)
+      },
+      hasTime(to: string, { from }: never) {
+        return hasTime(from, to)
+      },
+    },
   })
   const v$ = useVuelidate(validations, schedule)
   return { v$ }

@@ -1,4 +1,4 @@
-import Schedule from "../interfaces/schedule.interface"
+import Schedule from '../interfaces/schedule.interface'
 import getDay from '../utils/getDay'
 
 const SCHEDULE: Schedule = {

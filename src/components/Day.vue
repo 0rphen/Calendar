@@ -1,30 +1,31 @@
 <script setup lang="ts">
- import { storeToRefs } from 'pinia'
- import useSchedule from '../module/calendar/store/schedules.store'
- import getDay from '../utils/getDay'
- import Day from '../interfaces/day.interface'
+import { storeToRefs } from 'pinia'
+import useSchedule from '../module/calendar/store/schedules.store'
+import getDay from '../utils/getDay'
+import Day from '../interfaces/day.interface'
 
- interface IProps {
-   item: Day,
- }
- 
- const props = defineProps<IProps>()
- 
- const { day } = storeToRefs(useSchedule())
- const today = getDay()
+interface IProps {
+  item: Day
+}
+
+const props = defineProps<IProps>()
+
+const { day } = storeToRefs(useSchedule())
+const today = getDay()
 </script>
 
 <template>
   <div
     :class="{
-      'day':props.item != null,
-      'activity': item.schedules}"
+      day: props.item != null,
+      activity: item.hasSchedules
+    }"
   >
-    <p :class="{'actual': props.item.id == today,
-       'active': day == props.item.id}"
-       :data-id="props.item.id"
+    <p
+      :class="{ actual: props.item.id == today, active: day == props.item.id }"
+      :data-id="props.item.id"
     >
-      {{props.item.day}}
+      {{ props.item.day }}
     </p>
   </div>
 </template>

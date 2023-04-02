@@ -1,5 +1,5 @@
 export default interface Day {
-  id: string,
-  day: string,
-  schedules: boolean
+  id: string
+  day: string
+  hasSchedules: boolean
 }

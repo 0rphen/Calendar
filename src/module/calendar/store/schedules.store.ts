@@ -1,22 +1,23 @@
-import { reactive } from "vue"
+import { reactive } from 'vue'
 import { defineStore } from 'pinia'
-import Schedule from "../../../interfaces/schedule.interface"
+import Schedule from '../../../interfaces/schedule.interface'
 import State from '../../../types/State.type'
-import SCHEDULE from "../../../constants/schedule.constant"
-import SCHEDULES from "../../../constants/schedules.constant"
-import getDay from "../../../utils/getDay"
-import useMonthStore from "./month.store"
+import SCHEDULE from '../../../constants/schedule.constant'
+import SCHEDULES from '../../../constants/schedules.constant'
+import getDay from '../../../utils/getDay'
+import useMonthStore from './month.store'
 import useCheckScheduler from '../composable/checkScheduleDisposition'
 
 const day = getDay()
 
 const useSchedule = defineStore('schedules', {
-  state: () => (<State>{
-    day,
-    schedule: { ...SCHEDULE },
-    showModal: false,
-    schedules: [...SCHEDULES]
-  }),
+  state: () =>
+    <State>{
+      day,
+      schedule: { ...SCHEDULE },
+      showModal: false,
+      schedules: [...SCHEDULES]
+    },
   actions: {
     addSchedule() {
       this.schedules = [...this.schedules, { ...this.schedule, day: this.day }]
@@ -25,15 +26,20 @@ const useSchedule = defineStore('schedules', {
       checkDay(this.schedule.day)
     },
     removeSchedule(id: number) {
-      this.schedules = reactive([...this.schedules.filter((schedule: Schedule) => schedule.id != id)])
+      this.schedules = reactive([
+        ...this.schedules.filter((schedule: Schedule) => schedule.id != id)
+      ])
     },
-    toggleModal() { this.showModal = !this.showModal },
+    toggleModal() {
+      this.showModal = !this.showModal
+    },
     setDay(day: string) {
       this.day = day
-      this.schedule.day = day
     },
     hasSchedules(dayId: string): boolean {
-      return this.schedules.find((schedule: Schedule) => schedule.day == dayId) ? true : false
+      return this.schedules.find((schedule: Schedule) => schedule.day == dayId)
+        ? true
+        : false
     }
   },
   getters: {

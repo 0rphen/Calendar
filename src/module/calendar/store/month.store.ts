@@ -3,13 +3,14 @@ import Day from '../../../interfaces/day.interface'
 import Month from '../../../types/Month.type'
 import MONTHS from '../../../constants/months.constant'
 import useSchedule from '../store/schedules.store'
-import getDay from "../../../utils/getDay"
+import getDay from '../../../utils/getDay'
 
 const useMonthStore = defineStore('month', {
-  state: () => (<Month>{
-    date: new Date(),
-    months: [...MONTHS]
-  }),
+  state: () =>
+    <Month>{
+      date: new Date(),
+      months: [...MONTHS]
+    },
   actions: {
     nextDate() {
       const year = this.date.getFullYear()
@@ -22,36 +23,35 @@ const useMonthStore = defineStore('month', {
       this.date = new Date(year, month, 1)
     },
     getDayInfo(day: string): Day {
-      return this.getDays.find((d: Day) => d.day == day) || {} as Day
+      return this.getDays.find((d: Day) => d.day == day) || ({} as Day)
     },
     checkDay(dayId: string) {
-      this.getDays.forEach(day => {
-        if (day.id == dayId) day.schedules = true
+      this.getDays.forEach((day) => {
+        if (day.id == dayId) day.hasSchedules = true
       })
     }
   },
   getters: {
     month: (state: Month) => state.date.getMonth(),
-    emptyDays(): any {
+    emptyDays(): number {
       return new Date(this.date.getFullYear(), this.month).getDay()
     },
-    lastDay(): any {
+    lastDay(): Date {
       return new Date(this.date.getFullYear(), this.month + 1, 0)
     },
-    monthName(): any {
+    monthName(): string | undefined {
       return this.months.at(this.month)
     },
     getDays(): Day[] {
       const { hasSchedules } = useSchedule()
-      return Array.from(Array(this.lastDay.getDate()).keys())
-        .map(day => {
-          day += 1
-          return {
-            id: getDay(day, this.date),
-            day: (day).toString(),
-            schedules: hasSchedules(getDay(day, this.date))
-          } as Day
-        })
+      return Array.from(Array(this.lastDay.getDate()).keys()).map((day) => {
+        day += 1
+        return {
+          id: getDay(day, this.date),
+          day: day.toString(),
+          hasSchedules: hasSchedules(getDay(day, this.date))
+        } as Day
+      })
     }
   }
 })

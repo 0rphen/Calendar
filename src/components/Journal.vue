@@ -6,7 +6,10 @@ const { getScheduler } = storeToRefs(useSchedule())
 </script>
 
 <template>
-  <section v-if="getScheduler.length > 0" class="scheduler__list">
+  <section class="scheduler__list">
+    <div v-if="getScheduler.length <= 0">
+      You don't have any scheduler this day.
+    </div>
     <div
       v-for="(scheduler, index) of getScheduler"
       :key="scheduler.id"
@@ -20,5 +23,4 @@ const { getScheduler } = storeToRefs(useSchedule())
       <span>{{ scheduler.description }}</span>
     </div>
   </section>
-  <div v-else>You don't have any scheduler this day.</div>
 </template>

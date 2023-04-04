@@ -5,6 +5,7 @@ import Notification from '../../components/Notification.vue'
 
 import { storeToRefs } from 'pinia'
 import useCheckDisposition from './composable/checkScheduleDisposition'
+import INotification from 'interfaces/notification.interface'
 
 const { v$ } = useForm()
 const { addSchedule, toggleModal } = useSchedule()
@@ -18,17 +19,19 @@ function addingSchedule() {
     toggleModal()
   }
 }
+
+const notification: INotification = {
+    hasVisible: v$.value.to.hasTime.$invalid,
+    text: errorMessage,
+    icon: true,
+    type: 'warning'
+}
 </script>
 
 <template>
   <div class="modal__form">
     <h1 class="form__input--full">
-      <Notification
-        :text="errorMessage"
-        :hasVisible="v$.to.hasTime.$invalid"
-        :icon="true"
-        :type="'warning'"
-      />
+      <Notification :notification="notification" />
       New Schedule
     </h1>
     <label for="">title</label>

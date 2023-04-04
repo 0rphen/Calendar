@@ -37,7 +37,7 @@ function checkDay(event: any) {
         class="day__empty day__name"
         :style="`--empty:${emptyDays}`"
       ></div>
-      <Day :item="day" v-for="day of getDays" :key="day.id" />
+      <Day :day="day" v-for="day of getDays" :key="day.id" />
     </section>
     <Journal />
     <div class="scheduler__control">

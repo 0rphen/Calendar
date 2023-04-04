@@ -24,11 +24,6 @@ const useMonthStore = defineStore('month', {
     },
     getDayInfo(day: string): Day {
       return this.getDays.find((d: Day) => d.day == day) || ({} as Day)
-    },
-    checkDay(dayId: string) {
-      this.getDays.forEach((day) => {
-        if (day.id == dayId) day.hasSchedules = true
-      })
     }
   },
   getters: {
@@ -39,8 +34,8 @@ const useMonthStore = defineStore('month', {
     lastDay(): Date {
       return new Date(this.date.getFullYear(), this.month + 1, 0)
     },
-    monthName(): string | undefined {
-      return this.months.at(this.month)
+    monthName(): string {
+      return this.months.at(this.month) || 'January'
     },
     getDays(): Day[] {
       const { hasSchedules } = useSchedule()

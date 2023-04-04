@@ -3,12 +3,14 @@ import { storeToRefs } from 'pinia'
 import useSchedule from '../module/calendar/store/schedules.store'
 import getDay from '../utils/getDay'
 import Day from '../interfaces/day.interface'
+import { PropType } from 'vue';
 
-interface IProps {
-  item: Day
-}
-
-const props = defineProps<IProps>()
+const props = defineProps({
+  day: {
+    type: Object as PropType<Day>,
+    required: true,
+  }
+})
 
 const { day } = storeToRefs(useSchedule())
 const today = getDay()
@@ -17,15 +19,18 @@ const today = getDay()
 <template>
   <div
     :class="{
-      day: props.item != null,
-      activity: item.hasSchedules
+      day: props.day != null,
+      activity: props.day.hasSchedules
     }"
   >
     <p
-      :class="{ actual: props.item.id == today, active: day == props.item.id }"
-      :data-id="props.item.id"
+      :class="{
+        actual: props.day.id == today,
+        active: day == props.day.id
+      }"
+      :data-id="props.day.id"
     >
-      {{ props.item.day }}
+      {{ props.day.day }}
     </p>
   </div>
 </template>

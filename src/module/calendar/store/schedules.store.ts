@@ -5,7 +5,6 @@ import State from '../../../types/State.type'
 import SCHEDULE from '../../../constants/schedule.constant'
 import SCHEDULES from '../../../constants/schedules.constant'
 import getDay from '../../../utils/getDay'
-import useMonthStore from './month.store'
 import useCheckScheduler from '../composable/checkScheduleDisposition'
 
 const day = getDay()
@@ -20,10 +19,12 @@ const useSchedule = defineStore('schedules', {
     },
   actions: {
     addSchedule() {
-      this.schedules = [...this.schedules, { ...this.schedule, day: this.day }]
+      const id = Date.now()
+      this.schedules = [
+        ...this.schedules,
+        { ...this.schedule, day: this.day, id }
+      ]
       this.schedule = { ...SCHEDULE, day: this.day }
-      const { checkDay } = useMonthStore()
-      checkDay(this.schedule.day)
     },
     removeSchedule(id: number) {
       this.schedules = reactive([

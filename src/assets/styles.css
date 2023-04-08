@@ -1,108 +1,121 @@
 @import './components.css';
 
 * {
-    font-family: 'Lato', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-    --grid-calendar: repeat(7, 1fr);
-    --primary: hsl(349, 73%, 46%);
-    --p-hue: 349;
-    --p-sat: 73%;
-    --p-bri: 46%;
-    --secondary: hsl(45, 100%, 50%);
-    --s-hue: 45;
-    --s-sat: 100%;
-    --s-bri: 50%;
-    --terciary: hsl(275, 31%, 14%);
-    --t-hue: 275;
-    --t-sat: 31%;
-    --t-bri: 14%;
-    --white: hsl(0, 0%, 100%);
-    --w-hue: 0;
-    --w-sat: 0%;
-    --w-bri: 100%;
+  --grid-calendar: repeat(7, 1fr);
+  --primary: hsl(349, 73%, 46%);
+  --p-hue: 349;
+  --p-sat: 73%;
+  --p-bri: 46%;
+  --secondary: hsl(45, 100%, 50%);
+  --s-hue: 45;
+  --s-sat: 100%;
+  --s-bri: 50%;
+  --terciary: hsl(275, 31%, 14%);
+  --t-hue: 275;
+  --t-sat: 31%;
+  --t-bri: 14%;
+  --white: hsl(0, 0%, 100%);
+  --w-hue: 0;
+  --w-sat: 0%;
+  --w-bri: 100%;
 }
 
 main {
-    display: grid;
-    grid-template: var(--grid, 'title' max-content 'calendar' 1fr 'items' 1fr 'control' max-content / 1fr);
-    height: 100vh;
-    overflow: hidden;
-    width: 100%;
+  display: grid;
+  grid-template: var(
+    --grid,
+    'title' max-content 'calendar' 1fr 'items' 1fr 'control' max-content / 1fr
+  );
+  height: 100vh;
+  overflow: hidden;
+  width: 100%;
 }
 
 header {
-    --t-bri: 25%;
-    --bg: hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
-    background: var(--bg);
-    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
-    font-size: 2em;
-    font-weight: 800;
-    grid-area: title;
-    padding: 1rem 2rem;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
+  --t-bri: 25%;
+  --bg: hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
+  background: var(--bg);
+  color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+  font-size: 2em;
+  font-weight: 800;
+  grid-area: title;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
 }
 
 header span {
-    padding: 0 .5em;
-    cursor: pointer;
-    color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+  padding: 0 0.5em;
+  cursor: pointer;
+  color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
 }
 
 span:hover {
-    --w-bri: 40%;
+  --w-bri: 40%;
 }
 
 .calendar {
-    --bg: hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
-    background: linear-gradient(0deg, var(--bg) 20%, hsl(var(--t-hue), var(--t-sat), 25%) 100%);
-    display: grid;
-    grid-area: calendar;
-    grid-gap: 1em;
-    grid-template-columns: var(--grid-calendar);
-    grid-template-rows: min-content;
-    justify-content: center;
-    padding: 1rem 2rem;
+  --bg: hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
+  background: linear-gradient(
+    0deg,
+    var(--bg) 20%,
+    hsl(var(--t-hue), var(--t-sat), 25%) 100%
+  );
+  display: grid;
+  grid-area: calendar;
+  gap: 1em;
+  grid-template-columns: var(--grid-calendar);
+  grid-template-rows: min-content;
+  justify-content: center;
+  padding: 1rem 2rem;
 }
 
 /* FORMS*/
 
-:is(input:is([type=text], [type=time]), textarea) {
-    --w-bri: 90%;
-    background-color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
-    border: unset;
-    padding: .5em;
+:is(input:is([type='text'], [type='time']), textarea) {
+  --w-bri: 90%;
+  background-color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+  border: unset;
+  padding: 0.5em;
 }
 
-:is(input:is([type=text], [type=time]), textarea):focus {
-    box-shadow: 1px 1px 3px 3px hsla(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%), .2);
-    outline: thin solid hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
+:is(input:is([type='text'], [type='time']), textarea):focus {
+  box-shadow: 1px 1px 3px 3px
+    hsla(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%), 0.2);
+  outline: thin solid hsl(var(--t-hue, 0), var(--t-sat, 0%), var(--t-bri, 100%));
 }
 
-:is(input:is([type=time], [type=button]), label) {
-    text-transform: capitalize;
+:is(input:is([type='time'], [type='button']), label) {
+  text-transform: capitalize;
 }
 
-.error { outline: thin solid hsl(var(--p-hue, 0), var(--p-sat, 0%), var(--p-bri, 100%)); }
+.error {
+  outline: thin solid hsl(var(--p-hue, 0), var(--p-sat, 0%), var(--p-bri, 100%));
+}
 
-textarea { resize: none; }
+textarea {
+  resize: none;
+}
 
 @media screen and (min-width: 55rem) {
-    :root {
-        --grid: 'items title' max-content 'items calendar' 1fr 'control calendar' max-content / 1fr 2fr;
-    }
-    header {
-        padding: 1em 2em;
-        justify-content: flex-start;
-        gap: 2em;
-    }
-    .calendar {
-        padding: 0 15vw 20vh 2em;
-    }
+  :root {
+    --grid: 'items title' max-content 'items calendar' 1fr 'control calendar'
+      max-content / 1fr 2fr;
+  }
+  header {
+    padding: 1em 2em;
+    justify-content: flex-start;
+    gap: 2em;
+  }
+  .calendar {
+    padding: 0 15vw 20vh 2em;
+  }
 }

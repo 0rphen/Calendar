@@ -6,8 +6,14 @@ import SCHEDULE from '@/constants/schedule.constant'
 import SCHEDULES from '@/constants/schedules.constant'
 import getDay from '@/utils/getDay'
 import useCheckScheduler from '../composable/checkScheduleDisposition'
+import INotification from '@/interfaces/notification.interface'
 
 const day = getDay()
+
+const notification: Partial<INotification> = reactive({
+  text: '',
+  hasVisible: false
+})
 
 const useSchedule = defineStore('schedules', {
   state: () =>
@@ -16,7 +22,7 @@ const useSchedule = defineStore('schedules', {
       schedule: { ...SCHEDULE },
       showModal: false,
       schedules: [...SCHEDULES],
-      showNotification: false
+      notification: notification
     },
   actions: {
     addSchedule() {
@@ -43,8 +49,8 @@ const useSchedule = defineStore('schedules', {
         ? true
         : false
     },
-    hasNotification(show: boolean) {
-      this.showNotification = show
+    setNotification(show: Partial<INotification>) {
+      this.notification = { ...this.notification, ...show }
     }
   },
   getters: {

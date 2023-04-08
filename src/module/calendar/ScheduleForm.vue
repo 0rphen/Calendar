@@ -5,14 +5,12 @@ import Notification from '@/components/Notification.vue'
 
 import { storeToRefs } from 'pinia'
 import useCheckDisposition from './composable/checkScheduleDisposition'
-import INotification from '@/interfaces/notification.interface'
-import { reactive, watch } from 'vue'
+import { watch } from 'vue'
 
 const { v$ } = useForm()
-const { addSchedule, toggleModal, hasNotification } = useSchedule()
+const { addSchedule, toggleModal, setNotification } = useSchedule()
 const { schedule } = storeToRefs(useSchedule())
 const { hasTime } = useCheckDisposition()
-const errorMessage = "Warning, you've another schedule on this time"
 
 function addingSchedule() {
   if (hasTime(schedule.value.from, schedule.value.to)) {
@@ -22,20 +20,19 @@ function addingSchedule() {
   }
 }
 
-const notification: INotification = reactive({
-  text: errorMessage,
-  icon: true,
-  type: 'warning',
-  close: false
-});
-
-watch(() => v$.value.to.hasTime.$invalid, (invalid) => hasNotification(invalid))
+watch(() => v$.value.to.hasTime.$invalid, (invalid) =>
+  setNotification({
+    icon: true,
+    text: "Warning, you've another schedule on this time",
+    hasVisible: invalid,
+    type: 'warning',
+  }))
 </script>
 
 <template>
   <div class="modal__form">
     <h1 class="form__input--full">
-      <Notification :notification="notification" />
+      <Notification />
       New Schedule
     </h1>
     <label for="">title</label>

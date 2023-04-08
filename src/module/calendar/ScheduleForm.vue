@@ -23,10 +23,10 @@ function addingSchedule() {
 }
 
 const notification: INotification = reactive({
-    text: errorMessage,
-    icon: true,
-    type: 'warning',
-    close: false
+  text: errorMessage,
+  icon: true,
+  type: 'warning',
+  close: false
 });
 
 watch(() => v$.value.to.hasTime.$invalid, (invalid) => hasNotification(invalid))
@@ -44,7 +44,6 @@ watch(() => v$.value.to.hasTime.$invalid, (invalid) => hasNotification(invalid))
       class="form__input--full"
       @input="v$.title.$touch()"
       :class="{ error: v$.title.$invalid && v$.title.$dirty }"
-      name=""
       type="text"
     />
     <label for="">description</label>
@@ -54,8 +53,6 @@ watch(() => v$.value.to.hasTime.$invalid, (invalid) => hasNotification(invalid))
       @input="v$.description.$touch()"
       :class="{ error: v$.description.$invalid && v$.description.$dirty }"
       cols="30"
-      id=""
-      name=""
       rows="10"
     ></textarea>
     <label for="">From</label>
@@ -64,21 +61,18 @@ watch(() => v$.value.to.hasTime.$invalid, (invalid) => hasNotification(invalid))
       v-model="schedule.from"
       @input="v$.from.$touch()"
       :class="{ error: v$.from.$invalid && v$.from.$dirty }"
-      name=""
       type="time"
     />
     <input
       v-model="schedule.to"
       @input="v$.to.$touch()"
       :class="{ error: v$.to.$invalid && v$.to.$dirty }"
-      name=""
       type="time"
     />
     <input
       :disabled="v$.$invalid"
       @click="addingSchedule()"
       class="add-btn form__input--full"
-      name=""
       type="button"
       value="add"
     />

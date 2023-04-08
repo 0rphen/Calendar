@@ -106,8 +106,8 @@
   border: none;
   color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
   font-weight: 800;
-  padding: 1em 2em;
-  text-transform: uppercase;
+  padding-block: 1em;
+  --t-transform: uppercase;
 }
 
 .add-btn:hover {
@@ -273,22 +273,18 @@ button.add {
   animation: show-notification 0.5s linear forwards;
 }
 
-.notification__icon {
-  --p-bri: 15%;
-  text-transform: capitalize;
-  color: var(--notif-color, hsl(var(--p-hue), var(--p-sat), var(--p-bri)));
-}
-
-.notification__body {
+.notification__icon,
+.notification__body,
+.notification__control {
   --p-bri: 15%;
   text-transform: capitalize;
   color: var(--notif-color, hsl(var(--p-hue), var(--p-sat), var(--p-bri)));
 }
 
 .notification__control {
-  --p-bri: 15%;
-  text-transform: capitalize;
-  color: var(--notif-color, hsl(var(--p-hue), var(--p-sat), var(--p-bri)));
+  margin-left: auto;
+  font-size: 1.5em;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 55rem) {

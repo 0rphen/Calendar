@@ -1,6 +1,12 @@
 <script lang="ts" setup>
-import INotification from 'interfaces/notification.interface';
-import { PropType } from 'vue';
+import INotification from '@/interfaces/notification.interface'
+import useSchedule from '@/module/calendar/store/schedules.store'
+
+import { storeToRefs } from 'pinia'
+import { PropType } from 'vue'
+
+const { showNotification } = storeToRefs(useSchedule())
+const { hasNotification } = useSchedule()
 
 const props = defineProps({
   notification: {
@@ -8,15 +14,21 @@ const props = defineProps({
     required: true
   }
 })
+
+const close = () => hasNotification(false)
 </script>
 
 <template>
   <div
     class="notification"
-    :class="[{ visible: notification.hasVisible }, `${notification.type}`]"
+    :class="[{ visible: showNotification }, `${notification.type}`]"
   >
     <i class="fa fa-exclamation" v-if="props.notification.icon"></i>
     <div class="notification__body">{{ props.notification.text }}</div>
-    <div class="notification__control" v-if="props.notification.close"></div>
+    <div
+      v-if="props.notification.close"
+      class="notification__control"
+      @click="close"
+    >&times;</div>
   </div>
 </template>

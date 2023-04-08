@@ -5,6 +5,7 @@ type State = {
   schedule: Schedule
   showModal: boolean
   schedules: Schedule[]
+  showNotification: boolean
 }
 
 export default State

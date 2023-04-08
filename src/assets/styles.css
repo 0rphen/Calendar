@@ -55,7 +55,7 @@ header {
 header span {
   padding: 0 0.5em;
   cursor: pointer;
-  color: hsl(var(--w-hue), var(--w-sat), var(--w-bri));
+  color: hsl(var(--w-hue, 0), var(--w-sat, 0%), var(--w-bri, 100%));
 }
 
 span:hover {
@@ -94,7 +94,7 @@ span:hover {
 }
 
 :is(input:is([type='time'], [type='button']), label) {
-  text-transform: capitalize;
+  text-transform: var(--t-transform, capitalize);
 }
 
 .error {

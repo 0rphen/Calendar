@@ -6,7 +6,7 @@ import Journal from '@/components/Journal.vue'
 import useMonthState from './store/month.store'
 import ScheduleForm from './ScheduleForm.vue'
 import useSchedule from './store/schedules.store'
-import DAY_NAME from '../../constants/days.constant'
+import DAY_NAME from '@/constants/days.constant'
 
 const { monthName, emptyDays, getDays } = storeToRefs(useMonthState())
 const { prevDate, nextDate } = useMonthState()

@@ -14,12 +14,13 @@
     "skipLibCheck": true,
     "baseUrl": "src",
     "paths": {
-      "modules/*": ["modules/*"],
-      "interfaces/*": ["interfaces/*"],
-      "constants/*": ["constants/*"],
-      "components/*": ["components/*"],
-      "types/*": ["types/*"],
-      "utils/*": ["utils/*"]
+      "@/*": ["./*"],
+      "@/module/*": ["./module/*"],
+      "@/interfaces/*": ["./interfaces/*"],
+      "@/constants/*": ["./constants/*"],
+      "@/components/*": ["./components/*"],
+      "@/types/*": ["./types/*"],
+      "@/utils/*": ["./utils/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],

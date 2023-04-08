@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import Day from '../../../interfaces/day.interface'
-import Month from '../../../types/Month.type'
-import MONTHS from '../../../constants/months.constant'
+import Day from '@/interfaces/day.interface'
+import Month from '@/types/Month.type'
+import MONTHS from '@/constants/months.constant'
 import useSchedule from '../store/schedules.store'
-import getDay from '../../../utils/getDay'
+import getDay from '@/utils/getDay'
 
 const useMonthStore = defineStore('month', {
   state: () =>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import useSchedule from '../module/calendar/store/schedules.store'
-import getDay from '../utils/getDay'
-import Day from '../interfaces/day.interface'
+import useSchedule from '@/module/calendar/store/schedules.store'
+import getDay from '@/utils/getDay'
+import Day from '@/interfaces/day.interface'
 import { PropType } from 'vue';
 
 const props = defineProps({

@@ -1,5 +1,5 @@
 import useSchedule from '../store/schedules.store'
-import Schedule from 'interfaces/schedule.interface'
+import Schedule from '@/interfaces/schedule.interface'
 
 const DATE = '01/01/1999 '
 

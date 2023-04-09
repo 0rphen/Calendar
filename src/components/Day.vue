@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 import useSchedule from '@/module/calendar/store/schedules.store'
 import getDay from '@/utils/getDay'
-import Day from '@/interfaces/day.interface'
+import { Day } from '@/interfaces'
 import { PropType } from 'vue';
 
 const props = defineProps({

@@ -1,5 +1,4 @@
-import INotification from '@/interfaces/notification.interface'
-import Schedule from '@/interfaces/schedule.interface'
+import { INotification, Schedule } from '@/interfaces'
 
 type State = {
   day: string

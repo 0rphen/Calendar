@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import Day from '@/interfaces/day.interface'
+import { Day } from '@/interfaces'
 import Month from '@/types/Month.type'
-import MONTHS from '@/constants/months.constant'
+import { MONTHS } from '@/constants'
 import useSchedule from '../store/schedules.store'
 import getDay from '@/utils/getDay'
 

@@ -1,12 +1,12 @@
 import { reactive } from 'vue'
 import { defineStore } from 'pinia'
-import Schedule from '@/interfaces/schedule.interface'
+
 import State from '@/types/State.type'
-import SCHEDULE from '@/constants/schedule.constant'
-import SCHEDULES from '@/constants/schedules.constant'
+import { SCHEDULE, SCHEDULES } from '@/constants'
+import { INotification, Schedule } from '@/interfaces'
 import getDay from '@/utils/getDay'
+
 import useCheckScheduler from '../composable/checkScheduleDisposition'
-import INotification from '@/interfaces/notification.interface'
 
 const day = getDay()
 

@@ -1,4 +1,4 @@
-export default interface Day {
+export interface Day {
   id: string
   day: string
   hasSchedules: boolean

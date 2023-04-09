@@ -1,4 +1,4 @@
-export default interface Schedule {
+export interface Schedule {
   description: string
   from: string
   id?: number

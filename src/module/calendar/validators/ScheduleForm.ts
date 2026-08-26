@@ -21,8 +21,8 @@ const useForm = () => {
       },
       hasTime(to: string, { from }: never) {
         return hasTime(from, to)
-      },
-    },
+      }
+    }
   })
   const v$ = useVuelidate(validations, schedule)
   return { v$ }

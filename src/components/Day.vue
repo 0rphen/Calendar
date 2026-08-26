@@ -3,16 +3,16 @@ import { storeToRefs } from 'pinia'
 import useSchedule from '@/module/calendar/store/schedules.store'
 import getDay from '@/utils/getDay'
 import { Day } from '@/interfaces'
-import { PropType } from 'vue';
+import { PropType } from 'vue'
 
 const props = defineProps({
   day: {
     type: Object as PropType<Day>,
-    required: true,
+    required: true
   }
 })
 
-const { day } = storeToRefs(useSchedule())
+const { day: selectedDay } = storeToRefs(useSchedule())
 const today = getDay()
 </script>
 
@@ -26,7 +26,7 @@ const today = getDay()
     <p
       :class="{
         actual: props.day.id == today,
-        active: day == props.day.id
+        active: selectedDay == props.day.id
       }"
       :data-id="props.day.id"
     >

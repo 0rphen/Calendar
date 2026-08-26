@@ -20,13 +20,16 @@ function addingSchedule() {
   }
 }
 
-watch(() => v$.value.to.hasTime.$invalid, (invalid) =>
-  setNotification({
-    icon: true,
-    text: "Warning, you've another schedule on this time",
-    hasVisible: invalid,
-    type: 'warning',
-  }))
+watch(
+  () => v$.value.to.hasTime.$invalid,
+  (invalid) =>
+    setNotification({
+      icon: true,
+      text: "Warning, you've another schedule on this time",
+      hasVisible: invalid,
+      type: 'warning'
+    })
+)
 </script>
 
 <template>

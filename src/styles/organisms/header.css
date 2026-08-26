@@ -1,0 +1,20 @@
+@layer organisms {
+  .o-header {
+    --surface-l: var(--surface-l-raised);
+    --header-bg: oklch(var(--surface-l) var(--surface-c) var(--surface-h));
+    background: var(--header-bg);
+    color: var(--color-neutral);
+    display: flex;
+    font-size: var(--font-size-heading);
+    font-weight: 800;
+    grid-area: title;
+    justify-content: space-between;
+    padding-block: var(--space-s);
+    padding-inline: var(--space-m);
+    text-transform: uppercase;
+  }
+
+  .o-header__nav {
+    display: flex;
+  }
+}

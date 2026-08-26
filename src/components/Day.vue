@@ -19,14 +19,15 @@ const today = getDay()
 <template>
   <div
     :class="{
-      day: props.day != null,
-      activity: props.day.hasSchedules
+      'm-day': props.day != null,
+      'm-day--busy': props.day.hasSchedules
     }"
   >
     <p
+      class="m-day__number"
       :class="{
-        actual: props.day.id == today,
-        active: selectedDay == props.day.id
+        'm-day--today': props.day.id == today,
+        'm-day--selected': selectedDay == props.day.id
       }"
       :data-id="props.day.id"
     >

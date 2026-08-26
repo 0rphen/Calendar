@@ -1,0 +1,85 @@
+@layer tokens {
+  :root {
+    /* base channels — converted 1:1 from the previous HSL palette, confirmed with requester */
+    --brand-l-base: 0.545;
+    --brand-c-base: 0.202;
+    --brand-h-base: 18.6;
+
+    --accent-l-base: 0.841;
+    --accent-c-base: 0.173;
+    --accent-h-base: 84.2;
+
+    --surface-l-base: 0.239;
+    --surface-c-base: 0.045;
+    --surface-h-base: 310.2;
+
+    --neutral-l-base: 1;
+    --neutral-c-base: 0;
+    --neutral-h-base: 310.2;
+
+    /* live channels — what components/states override */
+    --brand-l: var(--brand-l-base);
+    --brand-c: var(--brand-c-base);
+    --brand-h: var(--brand-h-base);
+    --brand-a: 1;
+
+    --accent-l: var(--accent-l-base);
+    --accent-c: var(--accent-c-base);
+    --accent-h: var(--accent-h-base);
+    --accent-a: 1;
+
+    --surface-l: var(--surface-l-base);
+    --surface-c: var(--surface-c-base);
+    --surface-h: var(--surface-h-base);
+    --surface-a: 1;
+
+    --neutral-l: var(--neutral-l-base);
+    --neutral-c: var(--neutral-c-base);
+    --neutral-h: var(--neutral-h-base);
+    --neutral-a: 1;
+
+    /* composed colors */
+    --color-brand: oklch(var(--brand-l) var(--brand-c) var(--brand-h) / var(--brand-a));
+    --color-accent: oklch(var(--accent-l) var(--accent-c) var(--accent-h) / var(--accent-a));
+    --color-surface: oklch(var(--surface-l) var(--surface-c) var(--surface-h) / var(--surface-a));
+    --color-neutral: oklch(var(--neutral-l) var(--neutral-c) var(--neutral-h) / var(--neutral-a));
+
+    /* semantic surface/text variants — L already resolved from the previous *-bri overrides */
+    --surface-l-raised: 0.339;
+    --neutral-l-field: 0.923;
+    --neutral-l-line: 0.845;
+    --neutral-l-muted: 0.510;
+    --neutral-l-subtle: 0.598;
+    --brand-l-notice: 0.636;
+    --brand-l-on-notice: 0.254;
+
+    /* shared state deltas — confirmed with requester */
+    --l-step-hover: -0.07;
+    --l-step-active: -0.13;
+    --a-step-disabled: -0.6;
+
+    /* documented minimum lightness separation between a text token and its surface token */
+    --l-min-separation: 0.27;
+  }
+}
+
+@property --brand-l {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0.545;
+}
+@property --accent-l {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0.841;
+}
+@property --surface-l {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0.239;
+}
+@property --neutral-l {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}

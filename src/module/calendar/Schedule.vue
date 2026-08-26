@@ -20,36 +20,46 @@ function checkDay(event: any) {
 </script>
 
 <template>
-  <main>
-    <header>
+  <main class="t-app">
+    <header class="o-header">
       {{ monthName }}
-      <div>
-        <span><i class="fa fa-angle-left" @click="prevDate()"></i></span>
-        <span><i class="fa fa-angle-right" @click="nextDate()"></i></span>
+      <div class="o-header__nav">
+        <span class="a-icon-button" @click="prevDate()">
+          <svg class="a-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 4 L7 10 L13 16" />
+          </svg>
+        </span>
+        <span class="a-icon-button" @click="nextDate()">
+          <svg class="a-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 4 L13 10 L7 16" />
+          </svg>
+        </span>
       </div>
     </header>
-    <section class="calendar" @click="checkDay($event.target)">
-      <div class="day__name" v-for="(day, index) of DAY_NAME" :key="index">
+    <section class="o-calendar" @click="checkDay($event.target)">
+      <div class="m-day__name" v-for="(day, index) of DAY_NAME" :key="index">
         {{ day }}
       </div>
       <div
         v-if="emptyDays > 0"
-        class="day__empty day__name"
+        class="m-day--empty m-day__name"
         :style="`--empty:${emptyDays}`"
       ></div>
       <Day :day="day" v-for="day of getDays" :key="day.id" />
     </section>
     <Journal />
-    <div class="scheduler__control">
+    <div class="o-schedule-controls">
       <button
-        class="add-schedule"
-        :class="{ add: showModal }"
+        class="a-button a-button--fab"
+        :class="{ 'is-open': showModal }"
         @click="toggleModal()"
       >
-        <i class="fa fa-plus"></i>
+        <svg class="a-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M8 2v12M2 8h12" />
+        </svg>
       </button>
     </div>
-    <div class="scheduler__modal" :class="{ add: showModal }">
+    <div class="o-schedule-form" :class="{ 'o-schedule-form--open': showModal }">
       <ScheduleForm />
     </div>
   </main>

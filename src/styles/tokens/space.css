@@ -1,0 +1,17 @@
+@layer tokens {
+  :root {
+    /* spacing — derived from the values already in use across the app */
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-s: 1rem;
+    --space-m: 2rem;
+    --space-l: 3rem;
+
+    /* radius */
+    --radius-full: 50%;
+
+    /* hairline border — the one explicitly justified non-relative unit */
+    --border-hairline: 1px;
+    --border-inline-line: 0.1875rem;
+  }
+}

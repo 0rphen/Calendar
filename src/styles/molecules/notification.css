@@ -1,0 +1,61 @@
+@layer molecules {
+  .m-notification {
+    --notif-l: var(--brand-l-notice);
+    --notif-c: var(--brand-c-base);
+    --notif-h: var(--brand-h-base);
+    --notif-text-l: var(--brand-l-on-notice);
+    align-items: center;
+    background-color: oklch(var(--notif-l) var(--notif-c) var(--notif-h));
+    display: flex;
+    font-size: var(--notification-font-size, 0.4em);
+    gap: var(--space-s);
+    block-size: 100%;
+    inline-size: 100%;
+    justify-content: flex-start;
+    opacity: 0;
+    padding-block: var(--space-2xs);
+    padding-inline: var(--space-s);
+    position: absolute;
+    transition: opacity var(--duration-base) var(--ease-linear);
+  }
+  .m-notification--warning {
+    --notif-l: var(--accent-l-base);
+    --notif-c: var(--accent-c-base);
+    --notif-h: var(--accent-h-base);
+    --notif-text-l: var(--surface-l-base);
+  }
+  .m-notification--info {
+    --notif-l: var(--neutral-l-base);
+    --notif-c: var(--neutral-c-base);
+    --notif-h: var(--neutral-h-base);
+    --notif-text-l: var(--surface-l-base);
+  }
+  .m-notification--error {
+    --notif-l: var(--brand-l-notice);
+    --notif-c: var(--brand-c-base);
+    --notif-h: var(--brand-h-base);
+    --notif-text-l: var(--brand-l-on-notice);
+  }
+
+  .m-notification--visible {
+    animation: show-notification var(--duration-base) var(--ease-linear) forwards;
+  }
+
+  .m-notification__body,
+  .m-notification__close {
+    color: oklch(var(--notif-text-l) var(--notif-c) var(--notif-h));
+    text-transform: capitalize;
+  }
+
+  .m-notification__close {
+    margin-inline-start: auto;
+    font-size: var(--font-size-control);
+    cursor: pointer;
+  }
+
+  @container schedule-form (width >= 55rem) {
+    .m-notification {
+      --notification-font-size: 0.5em;
+    }
+  }
+}

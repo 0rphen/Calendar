@@ -1,0 +1,64 @@
+@layer molecules {
+  .m-schedule-item {
+    --item-color: oklch(var(--item-l) var(--item-c) var(--item-h));
+    animation: add-item var(--duration-base) var(--ease-in) forwards;
+    animation-delay: calc(var(--duration-stagger) * var(--item-index));
+    display: grid;
+    grid-template:
+      'hour' 1fr
+      'description' 1fr / 1fr;
+    opacity: 0;
+    padding-inline-start: var(--space-l);
+    position: relative;
+  }
+  .m-schedule-item:nth-child(3n + 1) {
+    --item-l: var(--brand-l-base);
+    --item-c: var(--brand-c-base);
+    --item-h: var(--brand-h-base);
+  }
+  .m-schedule-item:nth-child(3n + 2) {
+    --item-l: var(--accent-l-base);
+    --item-c: var(--accent-c-base);
+    --item-h: var(--accent-h-base);
+  }
+  .m-schedule-item:nth-child(3n + 3) {
+    --item-l: var(--surface-l-base);
+    --item-c: var(--surface-c-base);
+    --item-h: var(--surface-h-base);
+  }
+
+  .m-schedule-item::before {
+    background-color: var(--item-color);
+    border-radius: var(--radius-full);
+    content: '';
+    block-size: 1em;
+    inline-size: 1em;
+    inset-inline-start: 0;
+    position: absolute;
+    inset-block-start: 0.5em;
+  }
+  .m-schedule-item:not(:first-child)::after {
+    border-inline-start: var(--border-inline-line) solid
+      oklch(var(--neutral-l-line) var(--neutral-c-base) var(--neutral-h-base));
+    content: '';
+    block-size: 2.7em;
+    inset-inline-start: 0.35em;
+    position: absolute;
+    inset-block-start: calc(-50% - 0.8em);
+  }
+
+  .m-schedule-item__time {
+    color: var(--item-color);
+    display: flex;
+    grid-area: hour;
+    justify-content: space-between;
+  }
+  .m-schedule-item__meridiem {
+    font-size: var(--font-size-caption);
+  }
+
+  .m-schedule-item__description {
+    color: oklch(var(--neutral-l-muted) var(--neutral-c-base) var(--neutral-h-base));
+    grid-area: description;
+  }
+}

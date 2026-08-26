@@ -1,0 +1,14 @@
+@layer tokens {
+  :root {
+    /* documented breakpoint — CSS media queries can't consume a custom property,
+       so this is a reference value; every @media using it repeats 55rem literally */
+    --bp-wide: 55rem;
+
+    --z-overlay: 1;
+
+    --grid-calendar: repeat(7, 1fr);
+    --grid-app: 'title' max-content 'calendar' 1fr 'items' 1fr 'control' max-content / 1fr;
+    --grid-app-wide: 'items title' max-content 'items calendar' 1fr 'control calendar'
+      max-content / 1fr 2fr;
+  }
+}

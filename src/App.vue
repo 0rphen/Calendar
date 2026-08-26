@@ -7,8 +7,3 @@ import Schedule from '@/module/calendar/Schedule.vue'
 <template>
   <Schedule />
 </template>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
-@import './assets/styles.css';
-</style>

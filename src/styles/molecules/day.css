@@ -1,0 +1,61 @@
+@layer molecules {
+  .m-day {
+    cursor: pointer;
+    transition: background var(--duration-base) var(--ease-linear);
+  }
+  .m-day--empty {
+    grid-column: span var(--empty, 0);
+  }
+
+  .m-day__number {
+    align-items: center;
+    color: var(--color-neutral);
+    display: flex;
+    block-size: 100%;
+    inline-size: 100%;
+    justify-content: center;
+    position: relative;
+    transition: color var(--duration-base) var(--ease-linear);
+  }
+  .m-day__number.m-day--selected {
+    color: var(--color-brand);
+  }
+  .m-day__number.m-day--today::before {
+    border-radius: var(--radius-full);
+    border: var(--border-hairline) solid var(--color-neutral);
+    content: '';
+    block-size: var(--today-marker-size, 2.5em);
+    inline-size: var(--today-marker-size, 2.5em);
+    position: absolute;
+  }
+
+  .m-day--busy .m-day__number::after {
+    background-color: var(--color-brand);
+    border-radius: var(--radius-full);
+    inset-block-end: 0;
+    content: '';
+    block-size: 0.5em;
+    inline-size: 0.5em;
+    inset-inline-start: calc(50% - 0.25em);
+    position: absolute;
+  }
+
+  .m-day__name {
+    color: oklch(var(--neutral-l-subtle) var(--neutral-c-base) var(--neutral-h-base));
+    font-size: var(--day-name-font-size, 0em);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .m-day__name::first-letter {
+    font-size: 1rem;
+  }
+
+  @container calendar (width >= 55rem) {
+    .m-day__name {
+      --day-name-font-size: 1.12em;
+    }
+    .m-day__name::first-letter {
+      font-size: inherit;
+    }
+  }
+}

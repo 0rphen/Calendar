@@ -1,0 +1,69 @@
+@layer atoms {
+  .a-icon-button {
+    align-items: center;
+    color: var(--color-neutral);
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    min-inline-size: 2.75rem;
+    min-block-size: 2.75rem;
+    padding-inline: var(--space-2xs);
+  }
+  .a-icon-button:hover {
+    --neutral-l: clamp(0, calc(var(--neutral-l-muted) + var(--l-step-hover)), 1);
+    color: oklch(var(--neutral-l) var(--neutral-c) var(--neutral-h));
+  }
+  .a-icon-button:focus-visible {
+    outline: var(--border-hairline) solid var(--color-neutral);
+  }
+
+  .a-button {
+    border: none;
+    font-weight: 800;
+    text-transform: var(--t-transform, uppercase);
+  }
+  .a-button:focus-visible {
+    outline: var(--border-hairline) solid var(--color-neutral);
+  }
+
+  .a-button--primary {
+    --btn-bg: oklch(var(--brand-l) var(--brand-c) var(--brand-h) / var(--brand-a));
+    background-color: var(--btn-bg);
+    color: var(--color-neutral);
+    cursor: pointer;
+    padding-block: var(--space-s);
+  }
+  .a-button--primary:hover {
+    --brand-l: clamp(0, calc(var(--brand-l-base) + var(--l-step-hover)), 1);
+  }
+  .a-button--primary:active {
+    --brand-l: clamp(0, calc(var(--brand-l-base) + var(--l-step-active)), 1);
+  }
+  .a-button--primary:disabled {
+    --brand-a: calc(1 + var(--a-step-disabled));
+    cursor: not-allowed;
+  }
+
+  .a-button--fab {
+    --fab-size: 2.75rem;
+    --btn-bg: oklch(var(--accent-l) var(--accent-c) var(--accent-h) / var(--accent-a));
+    background-color: var(--btn-bg);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-size: var(--fab-size);
+    inline-size: var(--fab-size);
+    block-size: var(--fab-size);
+    text-decoration: none;
+    transition: transform var(--duration-base) var(--ease-linear);
+    z-index: var(--z-overlay);
+  }
+  .a-button--fab:hover {
+    --accent-l: clamp(0, calc(var(--accent-l-base) + var(--l-step-hover)), 1);
+  }
+  .a-button--fab:active {
+    --accent-l: clamp(0, calc(var(--accent-l-base) + var(--l-step-active)), 1);
+  }
+  .a-button--fab.is-open {
+    transform: rotate(45deg);
+  }
+}

@@ -1,0 +1,17 @@
+@layer organisms {
+  .o-schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    grid-area: items / items / control / items;
+    overflow-y: auto;
+    padding: var(--space-m);
+  }
+
+  .o-schedule-controls {
+    display: flex;
+    grid-area: control;
+    justify-content: flex-end;
+    padding: var(--space-s);
+  }
+}

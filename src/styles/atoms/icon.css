@@ -1,0 +1,8 @@
+@layer atoms {
+  .a-icon {
+    inline-size: 1em;
+    block-size: 1em;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+}

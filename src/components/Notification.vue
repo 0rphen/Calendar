@@ -11,12 +11,20 @@ const close = () => setNotification({ hasVisible: false })
 
 <template>
   <div
-    class="notification"
-    :class="[{ visible: notification.hasVisible }, `${notification.type}`]"
+    class="m-notification"
+    :class="[{ 'm-notification--visible': notification.hasVisible }, `m-notification--${notification.type}`]"
   >
-    <i class="fa fa-exclamation" v-if="notification.icon"></i>
-    <div class="notification__body">{{ notification.text }}</div>
-    <div v-if="notification.close" class="notification__control" @click="close">
+    <svg
+      v-if="notification.icon"
+      class="a-icon"
+      viewBox="0 0 8 20"
+      fill="currentColor"
+    >
+      <rect x="3" y="0" width="2" height="14" rx="1" />
+      <rect x="3" y="17" width="2" height="3" rx="1" />
+    </svg>
+    <div class="m-notification__body">{{ notification.text }}</div>
+    <div v-if="notification.close" class="m-notification__close" @click="close">
       &times;
     </div>
   </div>

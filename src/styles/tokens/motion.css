@@ -1,0 +1,15 @@
+@layer tokens {
+  :root {
+    --duration-base: 0.5s;
+    --duration-stagger: 0.3s;
+    --ease-in: ease-in;
+    --ease-linear: linear;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-base: 0.01ms;
+      --duration-stagger: 0ms;
+    }
+  }
+}

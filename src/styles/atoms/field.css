@@ -1,0 +1,20 @@
+@layer atoms {
+  .a-field {
+    background-color: oklch(var(--neutral-l-field) var(--neutral-c-base) var(--neutral-h-base));
+    color: oklch(var(--surface-l-base) var(--surface-c-base) var(--surface-h-base));
+    border: unset;
+    padding: var(--space-2xs);
+  }
+  .a-field:focus-visible {
+    box-shadow: 0.0625rem 0.0625rem 0.1875rem 0.1875rem
+      oklch(var(--surface-l-base) var(--surface-c-base) var(--surface-h-base) / 0.2);
+    outline: var(--border-hairline) solid var(--color-surface);
+  }
+  .a-field--invalid {
+    outline: var(--border-hairline) solid var(--color-brand);
+  }
+
+  :is(.a-field[type='time'], label) {
+    text-transform: var(--t-transform, capitalize);
+  }
+}

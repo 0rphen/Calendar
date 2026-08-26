@@ -1,0 +1,19 @@
+@layer organisms {
+  .o-calendar {
+    background: linear-gradient(
+      0deg,
+      var(--color-surface) 20%,
+      oklch(var(--surface-l-raised) var(--surface-c-base) var(--surface-h-base)) 100%
+    );
+    container-type: inline-size;
+    container-name: calendar;
+    display: grid;
+    grid-area: calendar;
+    gap: var(--space-s);
+    grid-template-columns: var(--grid-calendar);
+    grid-template-rows: min-content;
+    justify-content: center;
+    padding-block: var(--space-s);
+    padding-inline: var(--space-m);
+  }
+}

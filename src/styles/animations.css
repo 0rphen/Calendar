@@ -1,0 +1,26 @@
+@keyframes add-item {
+  0% {
+    opacity: 0;
+    transform: translateX(-1.25rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes show-notification {
+  0% {
+    opacity: 0;
+    display: none;
+    block-size: 0;
+  }
+  25% {
+    display: block;
+    block-size: 100%;
+    transform: translateY(-1.25rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

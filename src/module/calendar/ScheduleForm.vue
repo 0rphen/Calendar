@@ -33,25 +33,25 @@ watch(
 </script>
 
 <template>
-  <div class="o-schedule-form__grid">
-    <h1 class="o-schedule-form__field--full">
+  <div class="grid">
+    <h1 class="full">
       <Notification />
       New Schedule
     </h1>
     <label for="">title</label>
     <input
       v-model="schedule.title"
-      class="a-field o-schedule-form__field--full"
+      class="a-field full"
       @input="v$.title.$touch()"
-      :class="{ 'a-field--invalid': v$.title.$invalid && v$.title.$dirty }"
+      :class="{ invalid: v$.title.$invalid && v$.title.$dirty }"
       type="text"
     />
     <label for="">description</label>
     <textarea
       v-model="schedule.description"
-      class="a-field o-schedule-form__field--full"
+      class="a-field full"
       @input="v$.description.$touch()"
-      :class="{ 'a-field--invalid': v$.description.$invalid && v$.description.$dirty }"
+      :class="{ invalid: v$.description.$invalid && v$.description.$dirty }"
       cols="30"
       rows="10"
     ></textarea>
@@ -61,20 +61,20 @@ watch(
       v-model="schedule.from"
       class="a-field"
       @input="v$.from.$touch()"
-      :class="{ 'a-field--invalid': v$.from.$invalid && v$.from.$dirty }"
+      :class="{ invalid: v$.from.$invalid && v$.from.$dirty }"
       type="time"
     />
     <input
       v-model="schedule.to"
       class="a-field"
       @input="v$.to.$touch()"
-      :class="{ 'a-field--invalid': v$.to.$invalid && v$.to.$dirty }"
+      :class="{ invalid: v$.to.$invalid && v$.to.$dirty }"
       type="time"
     />
     <input
       :disabled="v$.$invalid"
       @click="addingSchedule()"
-      class="a-button a-button--primary o-schedule-form__field--full"
+      class="a-button primary full"
       type="button"
       value="add"
     />

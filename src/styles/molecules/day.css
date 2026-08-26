@@ -3,33 +3,11 @@
     cursor: pointer;
     transition: background var(--duration-base) var(--ease-linear);
   }
-  .m-day--empty {
-    grid-column: span var(--empty, 0);
-  }
 
-  .m-day__number {
-    align-items: center;
-    color: var(--color-neutral);
-    display: flex;
-    block-size: 100%;
-    inline-size: 100%;
-    justify-content: center;
-    position: relative;
-    transition: color var(--duration-base) var(--ease-linear);
-  }
-  .m-day__number.m-day--selected {
-    color: var(--color-brand);
-  }
-  .m-day__number.m-day--today::before {
-    border-radius: var(--radius-full);
-    border: var(--border-hairline) solid var(--color-neutral);
-    content: '';
-    block-size: var(--today-marker-size, 2.5em);
-    inline-size: var(--today-marker-size, 2.5em);
-    position: absolute;
-  }
-
-  .m-day--busy .m-day__number::after {
+  /* .busy is a modifier on .m-day itself, but this rule only ever targets its
+     descendant .number — stays flat, it's not a derivative of either selector alone.
+     SMACSS naming: bare modifier/sub-component class, no BEM prefix. */
+  .busy .number::after {
     background-color: var(--color-brand);
     border-radius: var(--radius-full);
     inset-block-end: 0;
@@ -40,22 +18,53 @@
     position: absolute;
   }
 
-  .m-day__name {
+  /* .number is a child of .m-day (Day.vue), not the same node — flat.
+     .today/.selected are verified on this same <p> element, so they nest here. */
+  .number {
+    align-items: center;
+    color: var(--color-neutral);
+    display: flex;
+    block-size: 100%;
+    inline-size: 100%;
+    justify-content: center;
+    position: relative;
+    transition: color var(--duration-base) var(--ease-linear);
+
+    &.selected {
+      color: var(--color-brand);
+    }
+    &.today::before {
+      border-radius: var(--radius-full);
+      border: var(--border-hairline) solid var(--color-neutral);
+      content: '';
+      block-size: var(--today-marker-size, 2.5em);
+      inline-size: var(--today-marker-size, 2.5em);
+      position: absolute;
+    }
+  }
+
+  /* .name is also a child of .m-day, kept flat for the same reason.
+     .empty is verified on this same node (Schedule.vue). */
+  .name {
     color: oklch(var(--neutral-l-subtle) var(--neutral-c-base) var(--neutral-h-base));
     font-size: var(--day-name-font-size, 0em);
     text-align: center;
     text-transform: uppercase;
-  }
-  .m-day__name::first-letter {
-    font-size: 1rem;
-  }
 
-  @container calendar (width >= 55rem) {
-    .m-day__name {
-      --day-name-font-size: 1.12em;
+    &::first-letter {
+      font-size: 1rem;
     }
-    .m-day__name::first-letter {
-      font-size: inherit;
+    &.empty {
+      grid-column: span var(--empty, 0);
+    }
+
+    @container calendar (width >= 55rem) {
+      & {
+        --day-name-font-size: 1.12em;
+      }
+      &::first-letter {
+        font-size: inherit;
+      }
     }
   }
 }

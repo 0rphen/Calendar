@@ -23,7 +23,7 @@ function checkDay(event: any) {
   <main class="t-app">
     <header class="o-header">
       {{ monthName }}
-      <div class="o-header__nav">
+      <div class="nav">
         <span class="a-icon-button" @click="prevDate()">
           <svg class="a-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M13 4 L7 10 L13 16" />
@@ -37,12 +37,12 @@ function checkDay(event: any) {
       </div>
     </header>
     <section class="o-calendar" @click="checkDay($event.target)">
-      <div class="m-day__name" v-for="(day, index) of DAY_NAME" :key="index">
+      <div class="name" v-for="(day, index) of DAY_NAME" :key="index">
         {{ day }}
       </div>
       <div
         v-if="emptyDays > 0"
-        class="m-day--empty m-day__name"
+        class="empty name"
         :style="`--empty:${emptyDays}`"
       ></div>
       <Day :day="day" v-for="day of getDays" :key="day.id" />
@@ -50,7 +50,7 @@ function checkDay(event: any) {
     <Journal />
     <div class="o-schedule-controls">
       <button
-        class="a-button a-button--fab"
+        class="a-button fab"
         :class="{ 'is-open': showModal }"
         @click="toggleModal()"
       >
@@ -59,7 +59,7 @@ function checkDay(event: any) {
         </svg>
       </button>
     </div>
-    <div class="o-schedule-form" :class="{ 'o-schedule-form--open': showModal }">
+    <div class="o-schedule-form" :class="{ open: showModal }">
       <ScheduleForm />
     </div>
   </main>

@@ -1,4 +1,7 @@
 @layer organisms {
+  /* .open is verified (Schedule.vue :class binding) on the .o-schedule-form element
+     itself, so it nests as an explicit compound. SMACSS naming: bare modifier, no BEM
+     prefix. */
   .o-schedule-form {
     background-color: var(--color-neutral);
     color: oklch(var(--surface-l-base) var(--surface-c-base) var(--surface-h-base));
@@ -10,22 +13,26 @@
     transform: translateY(-105%);
     transition: transform var(--duration-base) var(--ease-linear);
     z-index: var(--z-overlay);
-  }
-  .o-schedule-form--open {
-    transform: translateY(0);
+
+    &.open {
+      transform: translateY(0);
+    }
   }
 
-  .o-schedule-form__grid {
+  /* .grid is a child of .o-schedule-form (ScheduleForm.vue rendered inside it) — flat.
+     .full is reused on unrelated elements (a-field, a-button, h1) elsewhere in the same
+     template, never on .o-schedule-form itself — flat too. */
+  .grid {
     display: grid;
     gap: var(--space-s);
     grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
     padding: var(--space-s);
   }
-  .o-schedule-form__grid h1 {
+  .grid h1 {
     position: relative;
   }
 
-  .o-schedule-form__field--full {
+  .full {
     grid-column: span 2;
   }
 }

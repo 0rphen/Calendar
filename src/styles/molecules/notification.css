@@ -1,4 +1,7 @@
 @layer molecules {
+  /* .warning/.info/.error/.visible are verified (Notification.vue :class binding) on
+     the .m-notification element itself, so they nest as explicit compounds.
+     SMACSS naming: bare modifier, no BEM prefix. */
   .m-notification {
     --notif-l: var(--brand-l-notice);
     --notif-c: var(--brand-c-base);
@@ -17,45 +20,47 @@
     padding-inline: var(--space-s);
     position: absolute;
     transition: opacity var(--duration-base) var(--ease-linear);
-  }
-  .m-notification--warning {
-    --notif-l: var(--accent-l-base);
-    --notif-c: var(--accent-c-base);
-    --notif-h: var(--accent-h-base);
-    --notif-text-l: var(--surface-l-base);
-  }
-  .m-notification--info {
-    --notif-l: var(--neutral-l-base);
-    --notif-c: var(--neutral-c-base);
-    --notif-h: var(--neutral-h-base);
-    --notif-text-l: var(--surface-l-base);
-  }
-  .m-notification--error {
-    --notif-l: var(--brand-l-notice);
-    --notif-c: var(--brand-c-base);
-    --notif-h: var(--brand-h-base);
-    --notif-text-l: var(--brand-l-on-notice);
+
+    &.warning {
+      --notif-l: var(--accent-l-base);
+      --notif-c: var(--accent-c-base);
+      --notif-h: var(--accent-h-base);
+      --notif-text-l: var(--surface-l-base);
+    }
+    &.info {
+      --notif-l: var(--neutral-l-base);
+      --notif-c: var(--neutral-c-base);
+      --notif-h: var(--neutral-h-base);
+      --notif-text-l: var(--surface-l-base);
+    }
+    &.error {
+      --notif-l: var(--brand-l-notice);
+      --notif-c: var(--brand-c-base);
+      --notif-h: var(--brand-h-base);
+      --notif-text-l: var(--brand-l-on-notice);
+    }
+    &.visible {
+      animation: show-notification var(--duration-base) var(--ease-linear) forwards;
+    }
+
+    @container schedule-form (width >= 55rem) {
+      & {
+        --notification-font-size: 0.5em;
+      }
+    }
   }
 
-  .m-notification--visible {
-    animation: show-notification var(--duration-base) var(--ease-linear) forwards;
-  }
-
-  .m-notification__body,
-  .m-notification__close {
+  /* .body/.close are child elements of .m-notification (Notification.vue), not the
+     same node — kept flat. SMACSS naming: bare sub-component class, no BEM prefix. */
+  .body,
+  .close {
     color: oklch(var(--notif-text-l) var(--notif-c) var(--notif-h));
     text-transform: capitalize;
   }
 
-  .m-notification__close {
+  .close {
     margin-inline-start: auto;
     font-size: var(--font-size-control);
     cursor: pointer;
-  }
-
-  @container schedule-form (width >= 55rem) {
-    .m-notification {
-      --notification-font-size: 0.5em;
-    }
   }
 }

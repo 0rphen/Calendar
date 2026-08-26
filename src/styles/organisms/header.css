@@ -14,7 +14,9 @@
     text-transform: uppercase;
   }
 
-  .o-header__nav {
+  /* .nav is a child div of .o-header (Schedule.vue), not the same node — flat.
+     SMACSS naming: bare sub-component class, no BEM prefix. */
+  .nav {
     display: flex;
   }
 }

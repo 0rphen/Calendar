@@ -12,7 +12,7 @@ const close = () => setNotification({ hasVisible: false })
 <template>
   <div
     class="m-notification"
-    :class="[{ 'm-notification--visible': notification.hasVisible }, `m-notification--${notification.type}`]"
+    :class="[{ visible: notification.hasVisible }, notification.type]"
   >
     <svg
       v-if="notification.icon"
@@ -23,8 +23,8 @@ const close = () => setNotification({ hasVisible: false })
       <rect x="3" y="0" width="2" height="14" rx="1" />
       <rect x="3" y="17" width="2" height="3" rx="1" />
     </svg>
-    <div class="m-notification__body">{{ notification.text }}</div>
-    <div v-if="notification.close" class="m-notification__close" @click="close">
+    <div class="body">{{ notification.text }}</div>
+    <div v-if="notification.close" class="close" @click="close">
       &times;
     </div>
   </div>

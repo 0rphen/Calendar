@@ -16,11 +16,11 @@ const { getScheduler } = storeToRefs(useSchedule())
       class="m-schedule-item"
       :style="`--item-index: ${index}`"
     >
-      <h2 class="m-schedule-item__time">
+      <h2 class="time">
         {{ scheduler.title }}
-        <sup class="m-schedule-item__meridiem">{{ scheduler.from }} - {{ scheduler.to }}</sup>
+        <sup class="meridiem">{{ scheduler.from }} - {{ scheduler.to }}</sup>
       </h2>
-      <span class="m-schedule-item__description">{{ scheduler.description }}</span>
+      <span class="description">{{ scheduler.description }}</span>
     </div>
   </section>
 </template>

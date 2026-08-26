@@ -20,14 +20,14 @@ const today = getDay()
   <div
     :class="{
       'm-day': props.day != null,
-      'm-day--busy': props.day.hasSchedules
+      busy: props.day.hasSchedules
     }"
   >
     <p
-      class="m-day__number"
+      class="number"
       :class="{
-        'm-day--today': props.day.id == today,
-        'm-day--selected': selectedDay == props.day.id
+        today: props.day.id == today,
+        selected: selectedDay == props.day.id
       }"
       :data-id="props.day.id"
     >

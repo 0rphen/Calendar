@@ -15,6 +15,9 @@ const notification: Partial<INotification> = reactive({
   hasVisible: false
 })
 
+const NOTIFICATION_AUTO_DISMISS_MS = 4000
+let notificationTimeout: ReturnType<typeof setTimeout> | undefined
+
 const useSchedule = defineStore('schedules', {
   state: () =>
     <State>{
@@ -22,7 +25,9 @@ const useSchedule = defineStore('schedules', {
       schedule: { ...SCHEDULE },
       showModal: false,
       schedules: [...SCHEDULES],
-      notification: notification
+      notification: notification,
+      editingId: null,
+      pendingDeleteId: null
     },
   actions: {
     addSchedule() {
@@ -34,15 +39,39 @@ const useSchedule = defineStore('schedules', {
       this.schedule = { ...SCHEDULE, day: this.day }
     },
     removeSchedule(id: number) {
-      this.schedules = reactive([
-        ...this.schedules.filter((schedule: Schedule) => schedule.id != id)
-      ])
+      this.schedules = this.schedules.filter(
+        (schedule: Schedule) => schedule.id != id
+      )
+    },
+    editSchedule(schedule: Schedule) {
+      this.schedule = { ...schedule }
+      this.editingId = schedule.id ?? null
+    },
+    updateSchedule() {
+      this.schedules = this.schedules.map((schedule: Schedule) =>
+        schedule.id == this.editingId ? { ...this.schedule } : schedule
+      )
+      this.schedule = { ...SCHEDULE, day: this.day }
+      this.editingId = null
+    },
+    cancelEdit() {
+      this.schedule = { ...SCHEDULE, day: this.day }
+      this.editingId = null
+    },
+    confirmDelete(id: number) {
+      this.pendingDeleteId = id
+    },
+    dismissDelete() {
+      this.pendingDeleteId = null
     },
     toggleModal() {
       this.showModal = !this.showModal
     },
     setDay(day: string) {
       this.day = day
+      this.editingId = null
+      this.pendingDeleteId = null
+      this.schedule = { ...SCHEDULE, day }
     },
     hasSchedules(dayId: string): boolean {
       return this.schedules.find((schedule: Schedule) => schedule.day == dayId)
@@ -51,6 +80,12 @@ const useSchedule = defineStore('schedules', {
     },
     setNotification(show: Partial<INotification>) {
       this.notification = { ...this.notification, ...show }
+      clearTimeout(notificationTimeout)
+      if (show.close && show.hasVisible) {
+        notificationTimeout = setTimeout(() => {
+          this.notification = { ...this.notification, hasVisible: false }
+        }, NOTIFICATION_AUTO_DISMISS_MS)
+      }
     }
   },
   getters: {

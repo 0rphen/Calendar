@@ -6,6 +6,8 @@ type State = {
   showModal: boolean
   schedules: Schedule[]
   notification: INotification
+  editingId: number | null
+  pendingDeleteId: number | null
 }
 
 export default State

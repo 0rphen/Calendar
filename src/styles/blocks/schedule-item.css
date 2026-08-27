@@ -5,8 +5,8 @@
     animation-delay: calc(var(--duration-stagger) * var(--item-index));
     display: grid;
     grid-template:
-      'hour' 1fr
-      'description' 1fr / 1fr;
+      'hour actions' 1fr
+      'description actions' 1fr / 1fr auto;
     opacity: 0;
     padding-inline-start: var(--space-l);
     position: relative;
@@ -63,5 +63,22 @@
   .schedule-item-description {
     color: oklch(var(--neutral-l-muted) var(--neutral-c-base) var(--neutral-h-base));
     grid-area: description;
+  }
+
+  .schedule-item-actions {
+    align-items: center;
+    display: flex;
+    grid-area: actions;
+    justify-content: center;
+  }
+
+  .schedule-item-actions .icon-button {
+    color: var(--item-color);
+
+    &:hover {
+      color: oklch(
+        clamp(0, calc(var(--item-l) + var(--l-step-hover)), 1) var(--item-c) var(--item-h)
+      );
+    }
   }
 }

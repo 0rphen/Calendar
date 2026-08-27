@@ -11,12 +11,6 @@
 @keyframes show-notification {
   0% {
     opacity: 0;
-    display: none;
-    block-size: 0;
-  }
-  25% {
-    display: block;
-    block-size: 100%;
     transform: translateY(-1.25rem);
   }
   100% {

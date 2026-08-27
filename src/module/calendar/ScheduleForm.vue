@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import useForm from './validators/ScheduleForm'
 import useSchedule from './store/schedules.store'
-import Notification from '@/components/Notification.vue'
 
 import { storeToRefs } from 'pinia'
 import useCheckDisposition from './composable/checkScheduleDisposition'
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 
 const { v$ } = useForm()
-const { addSchedule, toggleModal, setNotification } = useSchedule()
-const { schedule } = storeToRefs(useSchedule())
+const { addSchedule, updateSchedule, toggleModal, setNotification } =
+  useSchedule()
+const { schedule, editingId } = storeToRefs(useSchedule())
 const { hasTime } = useCheckDisposition()
+
+const isEditing = computed(() => editingId.value !== null)
 
 function addingSchedule() {
   if (hasTime(schedule.value.from, schedule.value.to)) {
@@ -18,6 +20,31 @@ function addingSchedule() {
     toggleModal()
     v$.value.$reset()
   }
+}
+
+function updatingSchedule() {
+  if (
+    hasTime(
+      schedule.value.from,
+      schedule.value.to,
+      editingId.value ?? undefined
+    )
+  ) {
+    updateSchedule()
+    toggleModal()
+    v$.value.$reset()
+    setNotification({
+      icon: false,
+      text: 'Schedule updated',
+      hasVisible: true,
+      type: 'info',
+      close: true
+    })
+  }
+}
+
+function submitSchedule() {
+  isEditing.value ? updatingSchedule() : addingSchedule()
 }
 
 watch(
@@ -34,9 +61,8 @@ watch(
 
 <template>
   <div class="l-form-grid">
-    <h1 class="u-relative u-span-2">
-      <Notification />
-      New Schedule
+    <h1 class="u-span-2">
+      {{ isEditing ? 'Edit Schedule' : 'New Schedule' }}
     </h1>
     <label for="">title</label>
     <input
@@ -51,7 +77,9 @@ watch(
       v-model="schedule.description"
       class="field u-span-2"
       @input="v$.description.$touch()"
-      :data-state="v$.description.$invalid && v$.description.$dirty ? 'invalid' : undefined"
+      :data-state="
+        v$.description.$invalid && v$.description.$dirty ? 'invalid' : undefined
+      "
       cols="30"
       rows="10"
     ></textarea>
@@ -73,11 +101,11 @@ watch(
     />
     <input
       :disabled="v$.$invalid"
-      @click="addingSchedule()"
+      @click="submitSchedule()"
       class="button u-span-2"
       data-variant="primary"
       type="button"
-      value="add"
+      :value="isEditing ? 'update' : 'add'"
     />
   </div>
 </template>

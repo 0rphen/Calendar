@@ -10,15 +10,17 @@ const close = () => setNotification({ hasVisible: false })
 </script>
 
 <template>
-  <div
-    class="notification"
-    :data-variant="notification.type"
-    :data-state="notification.hasVisible ? 'visible' : undefined"
-  >
-    <i class="fa fa-exclamation" v-if="notification.icon"></i>
-    <div class="notification-body">{{ notification.text }}</div>
-    <div v-if="notification.close" class="notification-close" @click="close">
-      &times;
+  <Teleport to="body">
+    <div
+      class="notification"
+      :data-variant="notification.type"
+      :data-state="notification.hasVisible ? 'visible' : undefined"
+    >
+      <i class="fa fa-exclamation" v-if="notification.icon"></i>
+      <div class="notification-body">{{ notification.text }}</div>
+      <div v-if="notification.close" class="notification-close" @click="close">
+        &times;
+      </div>
     </div>
-  </div>
+  </Teleport>
 </template>

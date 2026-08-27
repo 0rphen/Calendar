@@ -15,15 +15,7 @@ const close = () => setNotification({ hasVisible: false })
     :data-variant="notification.type"
     :data-state="notification.hasVisible ? 'visible' : undefined"
   >
-    <svg
-      v-if="notification.icon"
-      class="icon"
-      viewBox="0 0 8 20"
-      fill="currentColor"
-    >
-      <rect x="3" y="0" width="2" height="14" rx="1" />
-      <rect x="3" y="17" width="2" height="3" rx="1" />
-    </svg>
+    <i class="fa fa-exclamation" v-if="notification.icon"></i>
     <div class="notification-body">{{ notification.text }}</div>
     <div v-if="notification.close" class="notification-close" @click="close">
       &times;

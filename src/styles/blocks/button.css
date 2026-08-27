@@ -48,12 +48,15 @@
     &[data-variant='fab'] {
       --fab-size: 2.75rem;
       --btn-bg: oklch(var(--accent-l) var(--accent-c) var(--accent-h) / var(--accent-a));
+      align-items: center;
       background-color: var(--btn-bg);
       border-radius: var(--radius-full);
       cursor: pointer;
+      display: flex;
       font-size: var(--fab-size);
       inline-size: var(--fab-size);
       block-size: var(--fab-size);
+      justify-content: center;
       text-decoration: none;
       transition: transform var(--duration-base) var(--ease-linear);
       z-index: var(--z-overlay);

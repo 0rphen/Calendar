@@ -25,14 +25,10 @@ function checkDay(event: any) {
       {{ monthName }}
       <div class="u-flex">
         <span class="icon-button" @click="prevDate()">
-          <svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 4 L7 10 L13 16" />
-          </svg>
+          <i class="fa fa-angle-left"></i>
         </span>
         <span class="icon-button" @click="nextDate()">
-          <svg class="icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 4 L13 10 L7 16" />
-          </svg>
+          <i class="fa fa-angle-right"></i>
         </span>
       </div>
     </header>
@@ -56,9 +52,7 @@ function checkDay(event: any) {
         :data-state="showModal ? 'open' : undefined"
         @click="toggleModal()"
       >
-        <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M8 2v12M2 8h12" />
-        </svg>
+        <i class="fa fa-plus"></i>
       </button>
     </div>
     <div class="schedule-form" :data-state="showModal ? 'open' : undefined">

@@ -1,6 +1,9 @@
 @layer block {
   .day {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: background var(--duration-base) var(--ease-linear);
   }
 
@@ -34,13 +37,11 @@
     &[data-state~='selected'] {
       color: var(--color-brand);
     }
-    &[data-state~='today']::before {
-      border-radius: var(--radius-full);
-      border: var(--border-hairline) solid var(--color-neutral);
-      content: '';
+    &[data-state~='today'] {
+      background-color: var(--color-accent);
+      border-radius: var(--radius-s);
       block-size: var(--today-marker-size, 2.5em);
       inline-size: var(--today-marker-size, 2.5em);
-      position: absolute;
     }
   }
 

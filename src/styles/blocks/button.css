@@ -1,9 +1,13 @@
 @layer block {
   .icon-button {
     align-items: center;
+    appearance: none;
+    background: none;
+    border: none;
     color: var(--color-neutral);
     cursor: pointer;
     display: inline-flex;
+    font: inherit;
     justify-content: center;
     min-inline-size: 2.75rem;
     min-block-size: 2.75rem;
@@ -43,6 +47,20 @@
     &[data-variant='primary']:disabled {
       --brand-a: calc(1 + var(--a-step-disabled));
       cursor: not-allowed;
+    }
+
+    &[data-variant='accent'] {
+      --btn-bg: oklch(var(--accent-l) var(--accent-c) var(--accent-h) / var(--accent-a));
+      background-color: var(--btn-bg);
+      color: oklch(var(--surface-l-base) var(--surface-c-base) var(--surface-h-base));
+      cursor: pointer;
+      padding-block: var(--space-s);
+    }
+    &[data-variant='accent']:hover {
+      --accent-l: clamp(0, calc(var(--accent-l-base) + var(--l-step-hover)), 1);
+    }
+    &[data-variant='accent']:active {
+      --accent-l: clamp(0, calc(var(--accent-l-base) + var(--l-step-active)), 1);
     }
 
     &[data-variant='fab'] {

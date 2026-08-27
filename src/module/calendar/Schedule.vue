@@ -3,6 +3,8 @@ import { storeToRefs } from 'pinia'
 
 import Day from '@/components/Day.vue'
 import Journal from '@/components/Journal.vue'
+import ConfirmDelete from '@/components/ConfirmDelete.vue'
+import Notification from '@/components/Notification.vue'
 import useMonthState from './store/month.store'
 import ScheduleForm from './ScheduleForm.vue'
 import useSchedule from './store/schedules.store'
@@ -10,12 +12,17 @@ import { DAY_NAME } from '@/constants'
 
 const { monthName, emptyDays, getDays } = storeToRefs(useMonthState())
 const { prevDate, nextDate } = useMonthState()
-const { toggleModal, setDay } = useSchedule()
+const { toggleModal, setDay, cancelEdit } = useSchedule()
 const { showModal } = storeToRefs(useSchedule())
 
 function checkDay(event: any) {
   const { id } = event.dataset
   if (id) setDay(id)
+}
+
+function closeForm() {
+  if (showModal.value) cancelEdit()
+  toggleModal()
 }
 </script>
 
@@ -44,13 +51,14 @@ function checkDay(event: any) {
       ></div>
       <Day :day="day" v-for="day of getDays" :key="day.id" />
     </section>
+    <Notification />
     <Journal />
     <div class="schedule-controls">
       <button
         class="button"
         data-variant="fab"
         :data-state="showModal ? 'open' : undefined"
-        @click="toggleModal()"
+        @click="closeForm()"
       >
         <i class="fa fa-plus"></i>
       </button>
@@ -58,5 +66,6 @@ function checkDay(event: any) {
     <div class="schedule-form" :data-state="showModal ? 'open' : undefined">
       <ScheduleForm />
     </div>
+    <ConfirmDelete />
   </main>
 </template>

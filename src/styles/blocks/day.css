@@ -4,21 +4,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     transition: background var(--duration-base) var(--ease-linear);
-  }
 
-  /* [data-state='busy'] is an exception on .day itself, but this rule only ever targets
-     its descendant .day-number — stays flat, it's not a derivative of either selector
-     alone (CUBE rule 9: a descendant belonging to a different block stays flat). */
-  .day[data-state='busy'] .day-number::after {
-    background-color: var(--color-brand);
-    border-radius: var(--radius-full);
-    inset-block-end: 0;
-    content: '';
-    block-size: 0.5em;
-    inline-size: 0.5em;
-    inset-inline-start: calc(50% - 0.25em);
-    position: absolute;
+    /* anchored to .day itself, not .day-number: that box shrinks to a fixed badge size
+       for 'today', which would otherwise shift the dot depending on the day's state.
+       Offset from the cell's own vertical center (not its bottom edge) by the today
+       badge's half-size, so the dot sits the same fixed distance under the number's
+       glyph on every day, today included, instead of drifting to the cell's edge. */
+    &[data-state='busy']::after {
+      background-color: var(--color-brand);
+      border-radius: var(--radius-full);
+      content: '';
+      block-size: 0.5em;
+      inline-size: 0.5em;
+      inset-block-start: calc(50% + var(--today-marker-size, 2.5em) / 2);
+      inset-inline-start: calc(50% - 0.25em);
+      position: absolute;
+    }
   }
 
   /* .day-number is a child of .day (Day.vue), not the same node — its own block.

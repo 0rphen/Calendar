@@ -1,8 +1,15 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import useSchedule from '@/module/calendar/store/schedules.store'
+import { Schedule } from '@/interfaces'
 
-const { getScheduler } = storeToRefs(useSchedule())
+const { editSchedule, toggleModal, confirmDelete } = useSchedule()
+const { getScheduler, showModal } = storeToRefs(useSchedule())
+
+function openEdit(scheduler: Schedule) {
+  editSchedule(scheduler)
+  if (!showModal.value) toggleModal()
+}
 </script>
 
 <template>
@@ -16,11 +23,30 @@ const { getScheduler } = storeToRefs(useSchedule())
       class="schedule-item"
       :style="`--item-index: ${index}`"
     >
-      <h2 class="schedule-item-time">
+      <h2
+        class="schedule-item-time"
+        role="button"
+        tabindex="0"
+        @click="openEdit(scheduler)"
+        @keydown.enter="openEdit(scheduler)"
+        @keydown.space.prevent="openEdit(scheduler)"
+      >
         {{ scheduler.title }}
-        <sup class="schedule-item-meridiem">{{ scheduler.from }} - {{ scheduler.to }}</sup>
+        <sup class="schedule-item-meridiem"
+          >{{ scheduler.from }} - {{ scheduler.to }}</sup
+        >
       </h2>
       <span class="schedule-item-description">{{ scheduler.description }}</span>
+      <div class="schedule-item-actions">
+        <button
+          class="icon-button"
+          type="button"
+          aria-label="Delete schedule"
+          @click="confirmDelete(scheduler.id!)"
+        >
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
     </div>
   </section>
 </template>

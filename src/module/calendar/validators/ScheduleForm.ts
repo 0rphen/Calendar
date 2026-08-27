@@ -19,8 +19,8 @@ const useForm = () => {
       minValue(val: string, { from }: never) {
         return returnDate(val) > returnDate(from)
       },
-      hasTime(to: string, { from }: never) {
-        return hasTime(from, to)
+      hasTime(to: string, { from, id }: never) {
+        return hasTime(from, to, id)
       }
     }
   })

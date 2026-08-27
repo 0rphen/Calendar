@@ -9,17 +9,30 @@
     --notif-text-l: var(--brand-l-on-notice);
     align-items: center;
     background-color: oklch(var(--notif-l) var(--notif-c) var(--notif-h));
+    border-radius: var(--radius-s);
+    box-shadow: 0 0 0.9375rem 0.3125rem oklch(0 0 0 / 0.25);
     display: flex;
-    font-size: var(--notification-font-size, 0.4em);
+    font-size: var(--font-size-caption);
     gap: var(--space-s);
-    block-size: 100%;
-    inline-size: 100%;
+    inline-size: max-content;
+    /* clears .header's rendered height (font-size-heading line box + its block padding)
+       so the toast never sits on top of the month-nav buttons on narrow viewports,
+       where the nav row and the toast's corner both compete for the same space */
+    inset-block-start: calc(var(--space-l) + var(--space-m));
+    inset-inline-end: var(--space-s);
     justify-content: flex-start;
+
+    @media (width >= 55rem) {
+      inset-block-start: var(--space-s);
+    }
+    max-inline-size: min(90dvi, 25rem);
     opacity: 0;
     padding-block: var(--space-2xs);
     padding-inline: var(--space-s);
-    position: absolute;
+    pointer-events: none;
+    position: fixed;
     transition: opacity var(--duration-base) var(--ease-linear);
+    z-index: var(--z-overlay);
 
     &[data-variant='warning'] {
       --notif-l: var(--accent-l-base);
@@ -41,12 +54,7 @@
     }
     &[data-state='visible'] {
       animation: show-notification var(--duration-base) var(--ease-linear) forwards;
-    }
-
-    @container schedule-form (width >= 55rem) {
-      & {
-        --notification-font-size: 0.5em;
-      }
+      pointer-events: auto;
     }
   }
 

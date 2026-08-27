@@ -1,0 +1,13 @@
+@layer composition {
+  .l-app {
+    display: grid;
+    grid-template: var(--grid-app);
+    block-size: 100dvh;
+    overflow: hidden;
+    inline-size: 100%;
+
+    @media (width >= 55rem) {
+      grid-template: var(--grid-app-wide);
+    }
+  }
+}

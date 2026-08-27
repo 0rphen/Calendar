@@ -33,25 +33,25 @@ watch(
 </script>
 
 <template>
-  <div class="grid">
-    <h1 class="full">
+  <div class="l-form-grid">
+    <h1 class="u-relative u-span-2">
       <Notification />
       New Schedule
     </h1>
     <label for="">title</label>
     <input
       v-model="schedule.title"
-      class="a-field full"
+      class="field u-span-2"
       @input="v$.title.$touch()"
-      :class="{ invalid: v$.title.$invalid && v$.title.$dirty }"
+      :data-state="v$.title.$invalid && v$.title.$dirty ? 'invalid' : undefined"
       type="text"
     />
     <label for="">description</label>
     <textarea
       v-model="schedule.description"
-      class="a-field full"
+      class="field u-span-2"
       @input="v$.description.$touch()"
-      :class="{ invalid: v$.description.$invalid && v$.description.$dirty }"
+      :data-state="v$.description.$invalid && v$.description.$dirty ? 'invalid' : undefined"
       cols="30"
       rows="10"
     ></textarea>
@@ -59,22 +59,23 @@ watch(
     <label for="">To</label>
     <input
       v-model="schedule.from"
-      class="a-field"
+      class="field"
       @input="v$.from.$touch()"
-      :class="{ invalid: v$.from.$invalid && v$.from.$dirty }"
+      :data-state="v$.from.$invalid && v$.from.$dirty ? 'invalid' : undefined"
       type="time"
     />
     <input
       v-model="schedule.to"
-      class="a-field"
+      class="field"
       @input="v$.to.$touch()"
-      :class="{ invalid: v$.to.$invalid && v$.to.$dirty }"
+      :data-state="v$.to.$invalid && v$.to.$dirty ? 'invalid' : undefined"
       type="time"
     />
     <input
       :disabled="v$.$invalid"
       @click="addingSchedule()"
-      class="a-button primary full"
+      class="button u-span-2"
+      data-variant="primary"
       type="button"
       value="add"
     />

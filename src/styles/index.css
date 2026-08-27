@@ -1,4 +1,4 @@
-@layer reset, tokens, atoms, molecules, organisms, templates, pages, utilities;
+@layer reset, tokens, composition, block, utility, exception;
 
 @import './reset.css';
 
@@ -8,19 +8,20 @@
 @import './tokens/motion.css';
 @import './tokens/layout.css';
 
-@import './atoms/icon.css';
-@import './atoms/button.css';
-@import './atoms/field.css';
+@import './composition/app.css';
+@import './composition/layouts.css';
 
-@import './molecules/day.css';
-@import './molecules/schedule-item.css';
-@import './molecules/notification.css';
+@import './blocks/icon.css';
+@import './blocks/button.css';
+@import './blocks/field.css';
+@import './blocks/day.css';
+@import './blocks/schedule-item.css';
+@import './blocks/notification.css';
+@import './blocks/header.css';
+@import './blocks/calendar.css';
+@import './blocks/schedule-list.css';
+@import './blocks/schedule-form.css';
 
-@import './organisms/header.css';
-@import './organisms/calendar.css';
-@import './organisms/schedule-list.css';
-@import './organisms/schedule-form.css';
-
-@import './templates/app.css';
+@import './utilities/utilities.css';
 
 @import './animations.css';

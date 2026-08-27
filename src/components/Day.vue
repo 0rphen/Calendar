@@ -18,17 +18,19 @@ const today = getDay()
 
 <template>
   <div
-    :class="{
-      'm-day': props.day != null,
-      busy: props.day.hasSchedules
-    }"
+    :class="{ day: props.day != null }"
+    :data-state="props.day.hasSchedules ? 'busy' : undefined"
   >
     <p
-      class="number"
-      :class="{
-        today: props.day.id == today,
-        selected: selectedDay == props.day.id
-      }"
+      class="day-number"
+      :data-state="
+        [
+          props.day.id == today ? 'today' : null,
+          selectedDay == props.day.id ? 'selected' : null
+        ]
+          .filter(Boolean)
+          .join(' ') || undefined
+      "
       :data-id="props.day.id"
     >
       {{ props.day.day }}

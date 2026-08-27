@@ -6,21 +6,21 @@ const { getScheduler } = storeToRefs(useSchedule())
 </script>
 
 <template>
-  <section class="o-schedule-list">
+  <section class="schedule-list">
     <div v-if="getScheduler.length <= 0">
       You don't have any scheduler this day.
     </div>
     <div
       v-for="(scheduler, index) of getScheduler"
       :key="scheduler.id"
-      class="m-schedule-item"
+      class="schedule-item"
       :style="`--item-index: ${index}`"
     >
-      <h2 class="time">
+      <h2 class="schedule-item-time">
         {{ scheduler.title }}
-        <sup class="meridiem">{{ scheduler.from }} - {{ scheduler.to }}</sup>
+        <sup class="schedule-item-meridiem">{{ scheduler.from }} - {{ scheduler.to }}</sup>
       </h2>
-      <span class="description">{{ scheduler.description }}</span>
+      <span class="schedule-item-description">{{ scheduler.description }}</span>
     </div>
   </section>
 </template>

@@ -1,13 +1,13 @@
-@layer molecules {
-  .m-day {
+@layer block {
+  .day {
     cursor: pointer;
     transition: background var(--duration-base) var(--ease-linear);
   }
 
-  /* .busy is a modifier on .m-day itself, but this rule only ever targets its
-     descendant .number — stays flat, it's not a derivative of either selector alone.
-     SMACSS naming: bare modifier/sub-component class, no BEM prefix. */
-  .busy .number::after {
+  /* [data-state='busy'] is an exception on .day itself, but this rule only ever targets
+     its descendant .day-number — stays flat, it's not a derivative of either selector
+     alone (CUBE rule 9: a descendant belonging to a different block stays flat). */
+  .day[data-state='busy'] .day-number::after {
     background-color: var(--color-brand);
     border-radius: var(--radius-full);
     inset-block-end: 0;
@@ -18,9 +18,10 @@
     position: absolute;
   }
 
-  /* .number is a child of .m-day (Day.vue), not the same node — flat.
-     .today/.selected are verified on this same <p> element, so they nest here. */
-  .number {
+  /* .day-number is a child of .day (Day.vue), not the same node — its own block.
+     'today'/'selected' can both apply to the same <p> at once, so they're matched with
+     [data-state~='...'] (word match) instead of '=' */
+  .day-number {
     align-items: center;
     color: var(--color-neutral);
     display: flex;
@@ -30,10 +31,10 @@
     position: relative;
     transition: color var(--duration-base) var(--ease-linear);
 
-    &.selected {
+    &[data-state~='selected'] {
       color: var(--color-brand);
     }
-    &.today::before {
+    &[data-state~='today']::before {
       border-radius: var(--radius-full);
       border: var(--border-hairline) solid var(--color-neutral);
       content: '';
@@ -43,9 +44,8 @@
     }
   }
 
-  /* .name is also a child of .m-day, kept flat for the same reason.
-     .empty is verified on this same node (Schedule.vue). */
-  .name {
+  /* .day-name is also a child of .day, its own block for the same reason. */
+  .day-name {
     color: oklch(var(--neutral-l-subtle) var(--neutral-c-base) var(--neutral-h-base));
     font-size: var(--day-name-font-size, 0em);
     text-align: center;
@@ -54,7 +54,7 @@
     &::first-letter {
       font-size: 1rem;
     }
-    &.empty {
+    &[data-state='empty'] {
       grid-column: span var(--empty, 0);
     }
 

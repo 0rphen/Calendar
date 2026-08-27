@@ -1,5 +1,5 @@
-@layer molecules {
-  .m-schedule-item {
+@layer block {
+  .schedule-item {
     --item-color: oklch(var(--item-l) var(--item-c) var(--item-h));
     animation: add-item var(--duration-base) var(--ease-in) forwards;
     animation-delay: calc(var(--duration-stagger) * var(--item-index));
@@ -48,20 +48,19 @@
     }
   }
 
-  /* .time/.meridiem/.description are child elements of .m-schedule-item (Journal.vue),
-     not the same node — kept flat, see css-standards SKILL.md §9. SMACSS naming: bare
-     sub-component class, no BEM prefix. */
-  .time {
+  /* .schedule-item-time/-meridiem/-description are child elements of .schedule-item
+     (Journal.vue), not the same node — their own blocks. */
+  .schedule-item-time {
     color: var(--item-color);
     display: flex;
     grid-area: hour;
     justify-content: space-between;
   }
-  .meridiem {
+  .schedule-item-meridiem {
     font-size: var(--font-size-caption);
   }
 
-  .description {
+  .schedule-item-description {
     color: oklch(var(--neutral-l-muted) var(--neutral-c-base) var(--neutral-h-base));
     grid-area: description;
   }

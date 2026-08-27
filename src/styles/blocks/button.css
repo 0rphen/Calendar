@@ -1,5 +1,5 @@
-@layer atoms {
-  .a-icon-button {
+@layer block {
+  .icon-button {
     align-items: center;
     color: var(--color-neutral);
     cursor: pointer;
@@ -18,10 +18,7 @@
     }
   }
 
-  /* .primary and .fab are verified (Schedule.vue, ScheduleForm.vue) to always sit on the
-     same element as .a-button, so they nest as an explicit compound — never as a bare
-     &--suffix, see css-standards SKILL.md §9. SMACSS naming: bare modifier, no BEM prefix. */
-  .a-button {
+  .button {
     border: none;
     font-weight: 800;
     text-transform: var(--t-transform, uppercase);
@@ -30,25 +27,25 @@
       outline: var(--border-hairline) solid var(--color-neutral);
     }
 
-    &.primary {
+    &[data-variant='primary'] {
       --btn-bg: oklch(var(--brand-l) var(--brand-c) var(--brand-h) / var(--brand-a));
       background-color: var(--btn-bg);
       color: var(--color-neutral);
       cursor: pointer;
       padding-block: var(--space-s);
     }
-    &.primary:hover {
+    &[data-variant='primary']:hover {
       --brand-l: clamp(0, calc(var(--brand-l-base) + var(--l-step-hover)), 1);
     }
-    &.primary:active {
+    &[data-variant='primary']:active {
       --brand-l: clamp(0, calc(var(--brand-l-base) + var(--l-step-active)), 1);
     }
-    &.primary:disabled {
+    &[data-variant='primary']:disabled {
       --brand-a: calc(1 + var(--a-step-disabled));
       cursor: not-allowed;
     }
 
-    &.fab {
+    &[data-variant='fab'] {
       --fab-size: 2.75rem;
       --btn-bg: oklch(var(--accent-l) var(--accent-c) var(--accent-h) / var(--accent-a));
       background-color: var(--btn-bg);
@@ -61,13 +58,13 @@
       transition: transform var(--duration-base) var(--ease-linear);
       z-index: var(--z-overlay);
     }
-    &.fab:hover {
+    &[data-variant='fab']:hover {
       --accent-l: clamp(0, calc(var(--accent-l-base) + var(--l-step-hover)), 1);
     }
-    &.fab:active {
+    &[data-variant='fab']:active {
       --accent-l: clamp(0, calc(var(--accent-l-base) + var(--l-step-active)), 1);
     }
-    &.fab.is-open {
+    &[data-variant='fab'][data-state='open'] {
       transform: rotate(45deg);
     }
   }

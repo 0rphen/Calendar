@@ -1,9 +1,9 @@
-@layer organisms {
-  /* neither rule ever declared a background (confirmed back to the pre-Atomic-Design
-     app) — the panel relied on the page's default white, which only holds up as long as
-     nothing (browser forced-dark, a themed host page) repaints that default. Declaring it
+@layer block {
+  /* neither rule ever declared a background (confirmed back to the pre-refactor app) —
+     the panel relied on the page's default white, which only holds up as long as nothing
+     (browser forced-dark, a themed host page) repaints that default. Declaring it
      explicitly keeps the panel white regardless. */
-  .o-schedule-list {
+  .schedule-list {
     background-color: var(--color-neutral);
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     padding: var(--space-m);
   }
 
-  .o-schedule-controls {
+  .schedule-controls {
     background-color: var(--color-neutral);
     display: flex;
     grid-area: control;

@@ -1,5 +1,5 @@
-@layer atoms {
-  .a-icon {
+@layer block {
+  .icon {
     inline-size: 1em;
     block-size: 1em;
     fill: currentColor;

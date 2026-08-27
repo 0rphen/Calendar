@@ -1,5 +1,5 @@
-@layer organisms {
-  .o-header {
+@layer block {
+  .header {
     --surface-l: var(--surface-l-raised);
     --header-bg: oklch(var(--surface-l) var(--surface-c) var(--surface-h));
     background: var(--header-bg);
@@ -12,11 +12,12 @@
     padding-block: var(--space-s);
     padding-inline: var(--space-m);
     text-transform: uppercase;
-  }
 
-  /* .nav is a child div of .o-header (Schedule.vue), not the same node — flat.
-     SMACSS naming: bare sub-component class, no BEM prefix. */
-  .nav {
-    display: flex;
+    @media (width >= 55rem) {
+      padding-block: var(--space-s);
+      padding-inline: var(--space-m);
+      justify-content: flex-start;
+      gap: var(--space-m);
+    }
   }
 }

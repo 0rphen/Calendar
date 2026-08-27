@@ -1,5 +1,5 @@
-@layer atoms {
-  .a-field {
+@layer block {
+  .field {
     background-color: oklch(var(--neutral-l-field) var(--neutral-c-base) var(--neutral-h-base));
     color: oklch(var(--surface-l-base) var(--surface-c-base) var(--surface-h-base));
     border: unset;
@@ -10,13 +10,12 @@
         oklch(var(--surface-l-base) var(--surface-c-base) var(--surface-h-base) / 0.2);
       outline: var(--border-hairline) solid var(--color-surface);
     }
-    /* verified same element (ScheduleForm.vue) — explicit compound, not a bare &--suffix */
-    &.invalid {
+    &[data-state='invalid'] {
       outline: var(--border-hairline) solid var(--color-brand);
     }
   }
 
-  :is(.a-field[type='time'], label) {
+  :is(.field[type='time'], label) {
     text-transform: var(--t-transform, capitalize);
   }
 }

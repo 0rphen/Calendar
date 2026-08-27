@@ -1,8 +1,8 @@
-@layer molecules {
-  /* .warning/.info/.error/.visible are verified (Notification.vue :class binding) on
-     the .m-notification element itself, so they nest as explicit compounds.
-     SMACSS naming: bare modifier, no BEM prefix. */
-  .m-notification {
+@layer block {
+  /* 'warning'/'info'/'error' are mutually exclusive variants of the notification kind;
+     'visible' is an independent state — both verified (Notification.vue) on the
+     .notification element itself, so they nest as exceptions. */
+  .notification {
     --notif-l: var(--brand-l-notice);
     --notif-c: var(--brand-c-base);
     --notif-h: var(--brand-h-base);
@@ -21,25 +21,25 @@
     position: absolute;
     transition: opacity var(--duration-base) var(--ease-linear);
 
-    &.warning {
+    &[data-variant='warning'] {
       --notif-l: var(--accent-l-base);
       --notif-c: var(--accent-c-base);
       --notif-h: var(--accent-h-base);
       --notif-text-l: var(--surface-l-base);
     }
-    &.info {
+    &[data-variant='info'] {
       --notif-l: var(--neutral-l-base);
       --notif-c: var(--neutral-c-base);
       --notif-h: var(--neutral-h-base);
       --notif-text-l: var(--surface-l-base);
     }
-    &.error {
+    &[data-variant='error'] {
       --notif-l: var(--brand-l-notice);
       --notif-c: var(--brand-c-base);
       --notif-h: var(--brand-h-base);
       --notif-text-l: var(--brand-l-on-notice);
     }
-    &.visible {
+    &[data-state='visible'] {
       animation: show-notification var(--duration-base) var(--ease-linear) forwards;
     }
 
@@ -50,15 +50,15 @@
     }
   }
 
-  /* .body/.close are child elements of .m-notification (Notification.vue), not the
-     same node — kept flat. SMACSS naming: bare sub-component class, no BEM prefix. */
-  .body,
-  .close {
+  /* .notification-body/.notification-close are child elements of .notification
+     (Notification.vue), not the same node — their own blocks. */
+  .notification-body,
+  .notification-close {
     color: oklch(var(--notif-text-l) var(--notif-c) var(--notif-h));
     text-transform: capitalize;
   }
 
-  .close {
+  .notification-close {
     margin-inline-start: auto;
     font-size: var(--font-size-control);
     cursor: pointer;
